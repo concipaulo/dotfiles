@@ -1,0 +1,17 @@
+temp-day=6500
+tem-night=3500
+
+transition=1
+
+brightness=1.0:0.4
+
+gamma=0.8:0.7:0.8
+
+location-provider=geoclue2
+
+adjustment-method=randr
+
+lat=-26.227223
+lon=-52.676032
+
+screen=0
