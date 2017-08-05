@@ -1,16 +1,17 @@
 source "gpg -dq $HOME/.mutt/.my_psswd.gpg |"
 
 set realname    = "Paulo Conci"
-set folder      = "imaps://imap.gmail.com/"
+set folder      = "imaps://imap.gmail.com:993"
 set imap_user   = "pauloagconci@gmail.com"
+set mailcap_path= ~/.mutt/.mailcap
 set imap_pass   =$my_pass
 set spoolfile   = +INBOX
 mailboxes       = +INBOX
 
 set imap_keepalive  = 300
-set mail_check      = 20
+set mail_check      = "10"
 unset imap_passive
-set postponed       = +[Gmail]/Drafts
+set postponed       = +INBOX/Drafts
 unset record
 set editor          = vim 
 
@@ -46,6 +47,10 @@ color index_size green default
 color normal default default
 color hdrdefault cyan default
 color body brightred default [\-\.+_a-zA-Z0-9]+@[\-\.a-zA-Z0-9]+
-color body brightblue default (http|ftp)://[\-\.\,/%~_:?\#a-zA-Z0-9]+
+#color body brightblue default (http|ftp)://[\-\.\,/%~_:?\#a-zA-Z0-9]+
 
 set crypt_use_gpgme=no
+
+auto_view text/html
+alternative_order text/plain text/enriched text/html
+

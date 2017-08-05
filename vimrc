@@ -2,8 +2,6 @@
 " Maintainer:
 "       Paulo Conci
 "
-" Version:
-"
 " Sections:
 "    -> General
 "    -> VIM user interface
@@ -173,7 +171,8 @@ set ffs=unix,dos,mac
 set nobackup
 set nowb
 set noswapfile
-"
+au BufWinLeave * mkview
+au BufWinEnter * silent loadview
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Text, tab and indent related
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -196,7 +195,7 @@ set si "Smart indent
 set wrap "Wrap lines
 "
 "
-""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Visual mode related
 """"""""""""""""""""""""""""""
 " Visual mode pressing * or # searches for the current selection
@@ -263,7 +262,7 @@ endtry
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 "
 "
-""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Status line
 """"""""""""""""""""""""""""""
 " Always show the status line

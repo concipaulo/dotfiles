@@ -1,0 +1,250 @@
+!#################################
+!# Xft settings
+!#################################
+Xft.dpi:                    96
+Xft.antialias:              true
+Xft.rgba:                   rgb
+Xft.hinting:                true
+Xft.hintstyle:              hintslight
+!#################################
+!#################################
+! URxvt configs
+!
+URxvt*scrollstyle: plain
+URxvt.depth: 32
+URxvt.perl-ext-common:  default,matcher
+URxvt.urlLauncher:      /usr/bin/firefox-esr
+!
+URxvt*saveLines: 12000
+!
+!!# Hack  Linux font
+URxvt*font: xft:Hack-Regular:pixelsize=13, xft:Fira Mono for Powerline:pixelsize=12
+!URxvt*font: xft:Fira Mono for Powerline:pixelsize=13
+!URxvt*font: xft:ProFont for Powerline:pixelsize=13
+URxvt*boldFont: xft:Hack-Bold:pixelsize=13, xft:Fira Mono for Powerline:pixelsize=12
+!URxvt*boldFont: xft:Fira Mono for Powerline:pixelsize=13
+!URxvt*boldFont: xft:ProFont Bold for Powerline:pixelsize=13
+!
+URxvt*letterSpace: 0
+!
+!!# scrollbar - true (default) or false
+URxvt*scrollBar: false
+!
+!!# scrollbar position - left=false (default) or right=true
+URxvt*scrollBar_right: false
+!
+URxvt.iso14755:         False
+!
+URxvt.cursorBlink: 1
+URxvt.cursorUnderline: 0
+URxvt*internalBorder: 0 
+!
+!*fadeColor: #002b36
+!*cursorColor: #93a1a1
+!*pointerColorBackground: #586e75
+!*pointerColorForeground: #93a1a1
+!
+!transparency
+URxvt.background: rgba:0000/0000/0000/e000
+URxvt.foreground: rgba:aaaa/aaaa/aaaa/7777
+!
+! Green and Clean no transparency
+!*.foreground:   #ffffff
+!*.background:   #2e3440
+!*.cursorColor:  #ffffff
+*.cursorColor:  #2e3457
+!
+! black
+!*.color0:       #2e3440
+!*.color8:       #707f9c
+! ! red
+!*.color1:       #84d498
+!*.color9:       #84d498
+!! ! green
+!*.color2:       #1cfa67
+!*.color10:      #1cfa67
+!! ! yellow
+!*.color3:       #85fa8d
+!*.color11:      #85fa86
+!! ! blue
+!*.color4:       #1aa662
+!*.color12:      #1aa662
+!! ! magenta
+!*.color5:       #23ff77
+!*.color13:      #23ff77
+!! ! cyan
+!*.color6:       #50fa7b
+!*.color14:      #50fa7b
+!! ! white
+!*.color7:       #707f9c
+!*.color15:      #ffffff
+!
+! Orange Green and grey
+!!! black dark/light
+*color0: #073642
+*color8: #002b36
+!!
+!!! red dark/light
+*color1: #dc322f
+*color9: #cb4b16
+!!
+!!! green dark/light
+*color2: #859900
+*color10: #586e75
+!!
+!!!! yellow dark/light
+*color3: #b58900
+*color11: #657b83
+!!
+!!! blue dark/light
+*color4: #268bd2
+*color12: #839496
+!!
+!!!! magenta dark/light
+*color5: #d33682
+*color13: #6c71c4
+!!
+!!!! cyan dark/light
+*color6: #2aa198
+*color14: #93a1a1
+!!
+!!!! white dark/light
+*color7: #eee8d5
+*color15: #fdf6e3
+!!
+! Colorfull Scheme
+! Colours
+!URxvt.depth: 24
+!
+!*background: #282828
+!*foreground: #ebdbb2
+!! Black + DarkGrey
+!*color0: #282828
+!*color8: #928374
+!! DarkRed + Red
+!*color1: #cc241d
+!*color9: #fb4934
+!! DarkGreen + Green
+!*color2: #98971a
+!*color10: #b8bb26
+!! DarkYellow + Yellow
+!*color3: #d79921
+!*color11: #fabd2f
+!! DarkBlue + Blue
+!*color4: #458588
+!*color12: #83a598
+!! DarkMagenta + Magenta
+!*color5: #b16286
+!*color13: #d3869b
+!! DarkCyan + Cyan
+!*color6: #689d6a
+!*color14: #8ec07c
+!! LightGrey + White
+!*color7: #a89984
+!*color15: #ebdbb2
+!
+! Black red purple cyan
+! black
+! *color0:  #000000
+! *color8:  #686868
+! red
+! *color1:  #B21818
+! *color9:  #FF5454
+! green
+! *color2:  #18B218
+! *color10: #54FF54
+! yellow
+! *color3:  #B26818
+! *color11: #FFFF54
+! blue
+! *color4:  #1818B2
+! *color12: #5454FF
+! purple
+! *color5:  #B218B2
+! *color13: #FF54FF
+! cyan
+! *color6:  #18B2B2
+! *color14: #54FFFF
+! white
+! *color7:  #B2B2B2
+! *color15: #FFFFFF
+!
+! Black Pink Blue Yellow
+! DarkBlack + Black
+!*color0:  #000000
+!*color8:  #555753
+! DarkRed + Red
+!*color1:  #ff6565
+!*color9:  #ff8d8d
+! DarkGreen + Green
+!*color2:  #93d44f
+!*color10: #c8e7a8
+! DarkYellow + Yellow
+!*color3:  #eab93d
+!*color11: #ffc123
+! DarkBlue + Blue
+!*color4:  #204a87
+!*color12: #3465a4
+! DarkMagenta + Magenta
+!*color5:  #ce5c00
+!*color13: #f57900
+!DarkCyan + Cyan (both not tango)
+!*color6:  #89b6e2
+!*color14: #46a4ff
+! LightGrey + White
+!*color7:  #cccccc
+!*color15: #ffffff
+!
+! Monokai light scheme
+!special
+! *.foreground:   #49483e
+! *.background:   #1e1e15
+! *.cursorColor:  #49483e
+! ! black
+!*.color0:       #272822
+!*.color8:       #75715e
+! ! red
+!*.color1:       #f92672
+!*.color9:       #f92672
+! ! green
+!*.color2:       #a6e22e
+!*.color10:      #a6e22e
+! ! yellow
+!*.color3:       #f4bf75
+!*.color11:      #f4bf75
+! ! blue
+!*.color4:       #66d9ef
+!*.color12:      #66d9ef
+! ! magenta
+!*.color5:       #ae81ff
+!*.color13:      #ae81ff
+! ! cyan
+!*.color6:       #a1efe4
+!*.color14:      #a1efe4
+! ! white
+!*.color7:       #ffffff
+!*.color15:      #fffefa
+!
+!#################################
+! ROFI Color theme
+!#################################
+ !rofi.modi: window, drun, run 
+ !rofi.fullscreen: true
+ !rofi.padding: 370
+ rofi.separator-style: none
+ rofi.hide-scrollbar: true
+ !rofi.bw: 6
+ rofi.lines: 8
+ rofi.position:center
+ rofi.font: Hack-regular 14
+ rofi.color-enabled: true
+ !rofi.color-window: #393939, #393939, #268bd2
+ !rofi.color-normal: #393939, #ffffff, #393939, #268bd2, #ffffff
+ !rofi.color-active: #393939, #268bd2, #393939, #268bd2, #205171
+ !rofi.color-urgent: #393939, #f3843d, #393939, #268bd2, #ffc39c
+ rofi.color-window: argb:d42e3440, argb:0000000, #1aa662
+ rofi.color-normal: argb:1000000, #84d498, argb:0000000, #23ff77, #2e3440
+ rofi.color-active: argb:0000000, #50fa7b, argb:0000000, #85fa86, #2e3440
+ rofi.color-urgent: argb:0000000, #1aa662, argb:0000000, #1aa662, #2e3440
+
+!vim filetype:Xresouces
