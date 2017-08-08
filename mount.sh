@@ -28,16 +28,17 @@ elif [[ $(blkid -o value -s UUID $d ) = '6C67-A7B4' ]]; then
 	mount $d /mnt/sony4
 	echo "Sony USB mounted to /mnt/sony4."
 
-elif [[ $(blkid -o value -s UUID $d ) = '0ff55b51-5294-4bc2-bbf0-819a804b0503' ]]; then
+elif [[ $(blkid -o value -s UUID $d ) = '77F1-B84A' ]]; then
 	mkdir -p /mnt/black
 	mount $d /mnt/black
-	echo "Black USB mounted to /mnt/black."
+	#echo "Black USB mounted to /mnt/black."
+    notify-send -u low "USB mounted"
 
 elif [[ $(blkid -o value -s UUID $d ) = '5676E8AA7EA3053E' ]]; then
 	mkdir -p /media/onboard
 	mount $d /media/onboard
-	echo "Mounted on /media/hdd"
-  notify-send "Internal partition was mounted on media/hdd"
+	#echo "Mounted on /media/hdd"
+    notify-send "Internal partition was mounted on media/hdd"
 
 fi
 

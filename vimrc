@@ -71,8 +71,8 @@ set autoread
 
 " With a map leader it's possible to do extra key combinations
 " like <leader>w saves the current file
-let mapleader = ","
-let g:mapleader = ","
+"let mapleader = ","
+"let g:mapleader = ","
 
 "omni completation
 "set omnifunc=syntaxcomplete#Complete
@@ -171,8 +171,9 @@ set ffs=unix,dos,mac
 set nobackup
 set nowb
 set noswapfile
-au BufWinLeave * mkview
-au BufWinEnter * silent loadview
+"bugs the clipboard yank and paste???? wtf
+"au BufWinLeave * mkview
+"au BufWinEnter * silent loadview
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Text, tab and indent related
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -308,6 +309,8 @@ command W w !sudo tee % > /dev/null
 cnoremap <C-p> <Up>
 cnoremap <C-n> <Down>
 "
+nnoremap <leader>m :w<CR>:!rubber --pdf --warn all %<CR>
+nnoremap <leader>v :!zathura %:r.pdf &<CR><CR>
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Spell checking
