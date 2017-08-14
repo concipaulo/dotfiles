@@ -32,7 +32,7 @@ bindsym $mod+Shift+e exec --no-startup-id "i3-nagbar -t warning -m 'You pressed 
 bindsym $mod+Return exec urxvt 
 bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
-bindsym $mod+Shift+Escape exec reboot
+bindsym $mod+Shift+Escape exec sudo reboot
 bindsym $mod+Tab workspace back_and_forth
 
 

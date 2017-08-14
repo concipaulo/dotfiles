@@ -174,6 +174,13 @@ set noswapfile
 "bugs the clipboard yank and paste???? wtf
 "au BufWinLeave * mkview
 "au BufWinEnter * silent loadview
+"Markdown files
+autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+"let g:markdown_fenced_languages = ['html', 'python', bash=sh']
+"let g:markdown_syntax_conceal = 0
+"let g:markdown_minlines = 100
+"let vim_markdown_preview_github=1
+"let vim_markdown_preview_perl=1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Text, tab and indent related
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -189,7 +196,7 @@ set tabstop=4
 "
 " Linebreak on 80 characters
 set lbr
-set tw=75
+set tw=70
 "
 set ai "Auto indent
 set si "Smart indent
@@ -304,6 +311,8 @@ nmap <leader>w :w!<cr>
 " :W sudo saves the file
 " (useful for handling the permission-denied error)
 command W w !sudo tee % > /dev/null
+
+command Q q 
 
 " Another mappings
 cnoremap <C-p> <Up>
