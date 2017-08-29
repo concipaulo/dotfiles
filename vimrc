@@ -172,8 +172,9 @@ set nobackup
 set nowb
 set noswapfile
 "bugs the clipboard yank and paste???? wtf
-"au BufWinLeave * mkview
-"au BufWinEnter * silent loadview
+"Folding 
+au BufWinLeave * mkview
+au BufWinEnter * silent loadview
 "Markdown files
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 "let g:markdown_fenced_languages = ['html', 'python', bash=sh']
@@ -196,7 +197,7 @@ set tabstop=4
 "
 " Linebreak on 80 characters
 set lbr
-set tw=70
+set tw=79
 "
 set ai "Auto indent
 set si "Smart indent
@@ -306,7 +307,7 @@ map <leader>d :NERDTreeToggle<CR>
 " Fast saving
 nmap <leader>w :w!<cr>
 "Fast closing w/out saving 
-"nmap <leader>q :q!<cr>
+nmap <leader>q :q<cr>
 
 " :W sudo saves the file
 " (useful for handling the permission-denied error)
@@ -318,7 +319,8 @@ command Q q
 cnoremap <C-p> <Up>
 cnoremap <C-n> <Down>
 "
-nnoremap <leader>m :w<CR>:!rubber --pdf --warn all %<CR>
+"nnoremap <leader>m :w<CR>:!rubber --pdf --warn all %<CR>
+nnoremap <leader>m :w<CR>:!pdflatex %<CR> :!bibtex %:r.aux <CR> :!pdflatex %<CR> :!pdflatex %<CR>
 nnoremap <leader>v :!zathura %:r.pdf &<CR><CR>
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

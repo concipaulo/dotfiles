@@ -2,8 +2,6 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
-setxkbmap -model pc104 -layout us intl
-setxkbmap -option caps:swapescape
 
 # If not running interactively, don't do anything
 case $- in
@@ -123,12 +121,10 @@ export PATH=$PATH:$TECHOME/bin
 if [ -f ~/.bash_greetings ]; then
     . ~/.bash_greetings
 fi
-#greetings
-#neofetch
-#echo "$(date +"%x at %T")"
-#echo "Welcome back"
-#echo "$(whoami)" | figlet | lolcat
+
+setxkbmap -model pc104 -layout us intl
+setxkbmap -option caps:swapescape
 
 #COLORFGBG="default;default"
-#
+
 [[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec startx

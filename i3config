@@ -102,7 +102,7 @@ bindsym $mod+x exec ~/.config/i3/lock.sh
 bindsym $mod+Shift+x exec sudo shutdown now 
 
 bindsym $mod+c split toggle
-bindsym $mod+Shift+c reload
+bindsym $mod+Shift+c exec --no-startup-id $term -e calcurse
 
 bindsym $mod+v exec --no-startup-id $term -e  ~/.cava/cava/cava 
 bindsym $mod+Shift+v exec --no-startup-id thunar 
