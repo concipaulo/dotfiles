@@ -18,7 +18,7 @@ set $term urxvt
 set $browser firefox-esr
 #exec --no-startup-id xcompmgr
 exec --no-startup-id nm-applet
-exec --no-startup-id sudo redshift
+exec_always --no-startup-id sudo redshift
 exec_always --no-startup-id feh --bg-scale ~/.config/i3/wall.png
 #
 # Keybindings
@@ -72,7 +72,7 @@ bindsym $mod+a gaps inner current plus 5
 bindsym $mod+Shift+a gaps inner current minus 5
 
 bindsym $mod+s exec --no-startup-id spotify
-#bindsym $mod+Shift+s 
+bindsym $mod+Shift+s exec --no-startup-id atom
 
 bindsym $mod+d exec "rofi -combi-modi window,drun,run -show combi"
 bindsym $mod+Shift+d gaps inner all set 0; gaps outer all set 0
@@ -196,16 +196,15 @@ for_window [window_role="gimp-toolbox"] floating disable; move right; resize gro
 bar {
        # status_command i3status
         position top
-        height 15
+        height 16
         font pango:Inconsolata for Powerline, FontAwesome 9
         #tray_output none
         status_command ~/.config/i3/bumblebee-status/bumblebee-status -m spotify amixer disk:home load memory date time -p interval=1 time.format="%H:%M:%S" date.format="%a, %b %d %Y" home.path=/home -t solarized-powerline
-
 }
 
 # Startup 
 exec_always --no-startup-id xrandr --output LVDS-1 --primary --mode 1360x768 --pos 0x0 --rotate normal --output DP-1 --off --output HDMI-1 --off --output VGA-1 --off
 exec_always --no-startup-id xset -b 
 exec_always --no-startup-id xset -dpms
-exec_always --no-startup-id compton -f
+exec_always --no-startup-id compton --config ~/.config/compton2.conf -b
 exec --no-startup-id amixer -q sset Master 0%

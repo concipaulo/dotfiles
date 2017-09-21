@@ -23,13 +23,12 @@ execute pathogen#infect()
 "call pathogen#runtime append all bundles()
 syntax on
 "Airline theme
-let g:airline_theme='base16color'
+let g:airline_theme='molokai'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#ctrlp#enable = 1
 let g:CtrlSpaceStatuslineFunction = "airline#extensions#ctrlspace#statusline()"
 "let g:airline_section_z = airline#section#create(['windowswap', '%3p%% ', 'linenr', ':%3v'])
-set t_Co=256
 "
 if !exists('g:airline_symbols')
       let g:airline_symbols = {}
@@ -41,8 +40,8 @@ let g:airline_symbols.space = "\ua0"
 " " Note; <leader>ll builds and <leader>le shows compile errors
 " " Note; install xdotool package for live previews in zathura
 " " let g:vimtex_view_method='general'
-let g:vimtex_view_method='zathura'
-let g:airline#extensions#vimtex#enable=1
+" let g:vimtex_view_method='zathura'
+" let g:airline#extensions#vimtex#enable=1
 
 
 " " Nerdtree settings
@@ -98,7 +97,7 @@ set wildmode=longest,list
 set ruler
 
 " Height of the command bar
-set cmdheight=2
+set cmdheight=1
 
 " A buffer becomes hidden when it is abandoned
 set hid
@@ -120,13 +119,14 @@ set hlsearch
 set incsearch
 
 " Don't redraw while executing macros (good performance config)
-"set lazyredraw
+set lazyredraw
 
 " For regular expressions turn magic on
 set magic
 
 " Show matching brackets when text indicator is over them
 set showmatch
+
 " How many tenths of a second to blink when matching brackets
 set mat=2
 
@@ -146,9 +146,11 @@ set relativenumber
 " => Colors and Fonts
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Enable syntax highlighting
-syntax enable
+" syntax enable
+set t_Co=256
+" colorscheme default
 "
-set background=dark
+set background=light
 "
 " Set extra options when running in GUI mode
 "if has("gui_running")
@@ -171,7 +173,6 @@ set ffs=unix,dos,mac
 set nobackup
 set nowb
 set noswapfile
-"bugs the clipboard yank and paste???? wtf
 "Folding 
 au BufWinLeave * mkview
 au BufWinEnter * silent loadview
@@ -306,13 +307,12 @@ map <leader>d :NERDTreeToggle<CR>
 
 " Fast saving
 nmap <leader>w :w!<cr>
-"Fast closing w/out saving 
+"Fast closing
 nmap <leader>q :q<cr>
 
 " :W sudo saves the file
 " (useful for handling the permission-denied error)
 command W w !sudo tee % > /dev/null
-
 command Q q 
 
 " Another mappings
@@ -320,7 +320,7 @@ cnoremap <C-p> <Up>
 cnoremap <C-n> <Down>
 "
 "nnoremap <leader>m :w<CR>:!rubber --pdf --warn all %<CR>
-nnoremap <leader>m :w<CR>:!pdflatex %<CR> :!bibtex %:r.aux <CR> :!pdflatex %<CR> :!pdflatex %<CR>
+nnoremap <leader>m :w<CR>:!xelatex %<CR> :!bibtex %:r.aux <CR> :!xelatex %<CR> :!xelatex %<CR>
 nnoremap <leader>v :!zathura %:r.pdf &<CR><CR>
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -397,6 +397,7 @@ let g:syntastic_auto_loc_list = 1
 "let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
+
 "remove arrowkeys
 nnoremap <Up> :echo "No up for you!" <CR>
 nnoremap <Down> :echo "No down for you!" <CR>
@@ -414,6 +415,6 @@ inoremap <Left> <C-o>:echo "No left for you!" <CR>
 inoremap <Right> <C-o>:echo "No right for you!" <CR>
 
 "laggy tex file ?
-autocmd FileType tex :NoMatchParen
-au FileType tex setlocal nocursorline
+" autocmd FileType tex :NoMatchParen
+" au FileType tex setlocal nocursorline
 

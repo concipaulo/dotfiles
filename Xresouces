@@ -45,14 +45,15 @@ URxvt*internalBorder: 0
 !*pointerColorForeground: #93a1a1
 !
 !transparency
-URxvt.background: rgba:0000/0000/0000/e000
+!URxvt.background: rgba:0000/0000/0000/e000
+URxvt.background: rgba:0000/0000/0000/f809
 URxvt.foreground: rgba:aaaa/aaaa/aaaa/7777
 !
 ! Green and Clean no transparency
 !*.foreground:   #ffffff
 !*.background:   #2e3440
 !*.cursorColor:  #ffffff
-*.cursorColor:  #2e3457
+!*.cursorColor:  #2e3457
 !
 ! black
 !*.color0:       #2e3440
@@ -81,36 +82,36 @@ URxvt.foreground: rgba:aaaa/aaaa/aaaa/7777
 !
 ! Orange Green and grey
 !!! black dark/light
-*color0: #073642
-*color8: #002b36
+!*color0: #073642
+!*color8: #002b36
 !!
 !!! red dark/light
-*color1: #dc322f
-*color9: #cb4b16
+!*color1: #dc322f
+!*color9: #cb4b16
 !!
 !!! green dark/light
-*color2: #859900
-*color10: #586e75
+!*color2: #859900
+!*color10: #586e75
 !!
 !!!! yellow dark/light
-*color3: #b58900
-*color11: #657b83
+!*color3: #b58900
+!*color11: #657b83
 !!
 !!! blue dark/light
-*color4: #268bd2
-*color12: #839496
+!*color4: #268bd2
+!*color12: #839496
 !!
 !!!! magenta dark/light
-*color5: #d33682
-*color13: #6c71c4
+!*color5: #d33682
+!*color13: #6c71c4
 !!
 !!!! cyan dark/light
-*color6: #2aa198
-*color14: #93a1a1
+!*color6: #2aa198
+!*color14: #93a1a1
 !!
 !!!! white dark/light
-*color7: #eee8d5
-*color15: #fdf6e3
+!*color7: #eee8d5
+!*color15: #fdf6e3
 !!
 ! Colorfull Scheme
 ! Colours
@@ -194,7 +195,6 @@ URxvt.foreground: rgba:aaaa/aaaa/aaaa/7777
 ! LightGrey + White
 !*color7:  #cccccc
 !*color15: #ffffff
-!
 ! Monokai light scheme
 !special
 ! *.foreground:   #49483e
@@ -225,6 +225,43 @@ URxvt.foreground: rgba:aaaa/aaaa/aaaa/7777
 !*.color7:       #ffffff
 !*.color15:      #fffefa
 !
+!Material
+!! special
+*.foreground:   #eceff1
+*.background:   #263238
+*.cursorColor:  #eceff1
+
+! black
+*.color0:       #263238
+*.color8:       #37474f
+
+! red
+*.color1:       #ff9800
+*.color9:       #ffa74d
+
+! green
+*.color2:       #8bc34a
+*.color10:      #9ccc65
+
+! yellow
+*.color3:       #ffc107
+*.color11:      #ffa000
+
+! blue
+*.color4:       #03a9f4
+*.color12:      #81d4fa
+
+! magenta
+*.color5:       #e91e63
+*.color13:      #ad1457
+
+! cyan
+*.color6:       #009688
+*.color14:      #26a69a
+
+! white
+*.color7:       #cfd8dc
+*.color15:      #eceff1
 !#################################
 ! ROFI Color theme
 !#################################
