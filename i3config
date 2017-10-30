@@ -16,10 +16,6 @@ font pango:Inconsolata 9
 #configuring
 set $term urxvt
 set $browser firefox-esr
-#exec --no-startup-id xcompmgr
-exec --no-startup-id nm-applet
-exec_always --no-startup-id sudo redshift
-exec_always --no-startup-id feh --bg-scale ~/.config/i3/wall.png
 #
 # Keybindings
 # Use Mouse+$mod to drag floating windows to their wanted position
@@ -41,6 +37,7 @@ bindsym $mod+Shift+q kill
 bindsym $mod+q kill
 
 bindsym $mod+w exec --no-startup-id qutebrowser --backend webengine
+# bindsym $mod+w exec --no-startup-id qutebrowser
 bindsym $mod+Shift+w exec --no-startup-id $browser
 
 
@@ -104,10 +101,10 @@ bindsym $mod+Shift+x exec sudo shutdown now
 bindsym $mod+c split toggle
 bindsym $mod+Shift+c exec --no-startup-id $term -e calcurse
 
-bindsym $mod+v exec --no-startup-id $term -e  ~/.cava/cava/cava 
-bindsym $mod+Shift+v exec --no-startup-id thunar 
+bindsym $mod+v exec --no-startup-id thunar 
+bindsym $mod+Shift+v exec --no-startup-id $term -e  ~/.cava/cava/cava 
 
-#bindsym $mod+b 
+bindsym $mod+b exec --no-startup-id tty-clock
 #bindsym $mod+Shift+b
 
 #bindsym $mod+n 
@@ -199,12 +196,18 @@ bar {
         height 16
         font pango:Inconsolata for Powerline, FontAwesome 9
         #tray_output none
-        status_command ~/.config/i3/bumblebee-status/bumblebee-status -m spotify amixer disk:home load memory date time -p interval=1 time.format="%H:%M:%S" date.format="%a, %b %d %Y" home.path=/home -t solarized-powerline
+        # status_command ~/.config/bumblebee-status/bumblebee-status -m spotify disk:home load memory date time redshift caffeine amixer -p interval=1 time.format="%H:%M:%S" date.format="%a, %b %d %Y" home.path=/home -t gruvbox-powerline
+        status_command ~/.config/bumblebee-status/bumblebee-status -m spotify date time redshift caffeine amixer -p interval=1 time.format="%H:%M:%S" date.format="%a, %b %d %Y" -t gruvbox-powerline
 }
 
 # Startup 
 exec_always --no-startup-id xrandr --output LVDS-1 --primary --mode 1360x768 --pos 0x0 --rotate normal --output DP-1 --off --output HDMI-1 --off --output VGA-1 --off
 exec_always --no-startup-id xset -b 
 exec_always --no-startup-id xset -dpms
-exec_always --no-startup-id compton --config ~/.config/compton2.conf -b
+exec --no-startup-id compton --config ~/.config/compton2.conf -b
 exec --no-startup-id amixer -q sset Master 0%
+exec --no-startup-id ~/.config/i3/blurme &
+#exec --no-startup-id xcompmgr
+exec --no-startup-id nm-applet
+exec --no-startup-id redshift
+exec --no-startup-id feh --bg-scale ~/.config/i3/wall.png

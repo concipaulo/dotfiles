@@ -6,3 +6,5 @@ alias lal=lla
 #alias cd..='cd ..'
 alias ..='cd ..'
 alias e='exit'
+alias vim='vim --servername vim'
+alias gt='vim ~/Articles/graduate_thesis/gradthesis.tex'

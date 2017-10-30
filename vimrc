@@ -29,19 +29,29 @@ let g:airline_powerline_fonts = 1
 let g:airline#extensions#ctrlp#enable = 1
 let g:CtrlSpaceStatuslineFunction = "airline#extensions#ctrlspace#statusline()"
 "let g:airline_section_z = airline#section#create(['windowswap', '%3p%% ', 'linenr', ':%3v'])
+let g:airline#extensions#whitespace#show_message = 0
 "
 if !exists('g:airline_symbols')
       let g:airline_symbols = {}
 endif
 let g:airline_symbols.space = "\ua0"
 
+  let g:airline_left_sep = ''
+  let g:airline_left_alt_sep = ''
+  let g:airline_right_sep = ''
+  let g:airline_right_alt_sep = ''
+  let g:airline_symbols.branch = ''
+  let g:airline_symbols.readonly = ''
+  let g:airline_symbols.linenr = '☰'
+  let g:airline_symbols.maxlinenr = ''
+
 
 " Vimtex settings
 " " Note; <leader>ll builds and <leader>le shows compile errors
 " " Note; install xdotool package for live previews in zathura
 " " let g:vimtex_view_method='general'
-" let g:vimtex_view_method='zathura'
-" let g:airline#extensions#vimtex#enable=1
+"let g:vimtex_view_method='zathura'
+"let g:airline#extensions#vimtex#enable=1
 
 
 " " Nerdtree settings
@@ -76,13 +86,29 @@ set autoread
 "omni completation
 "set omnifunc=syntaxcomplete#Complete
 
+"Cursor in different modes
+"let &t_SI = "\<Esc>[6 q"
+"let &t_SR = "\<Esc>[4 q"
+"let &t_EI = "\<Esc>[2 q"
+
+if &term =~ "xterm\\|rxvt"
+  " use an orange cursor in insert mode
+  let &t_SI = "\<Esc>]12;orange\x7"
+  " use a red cursor otherwise
+  let &t_EI = "\<Esc>]12;gray\x7"
+  silent !echo -ne "\033]12;gray\007"
+  " reset cursor when vim exits
+  autocmd VimLeave * silent !echo -ne "\033]112\007"
+  " use \003]12;gray\007 for gnome-terminal and rxvt up to version 9.21
+endif
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Set lines to the cursor - when moving vertically using j/k
 set so=6
 
-" Turn on the WiLd menu
+" Turn on the WiLd menu 
 set wildmode=longest,list
 
 " Ignore compiled files
@@ -150,7 +176,7 @@ set relativenumber
 set t_Co=256
 " colorscheme default
 "
-set background=light
+set background=dark
 "
 " Set extra options when running in GUI mode
 "if has("gui_running")
@@ -174,8 +200,8 @@ set nobackup
 set nowb
 set noswapfile
 "Folding 
-au BufWinLeave * mkview
-au BufWinEnter * silent loadview
+au BufWinLeave ?* mkview
+au BufWinEnter ?* silent loadview
 "Markdown files
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 "let g:markdown_fenced_languages = ['html', 'python', bash=sh']
@@ -244,7 +270,10 @@ map <leader>tn :tabnew<cr>
 map <leader>to :tabonly<cr>
 map <leader>tc :tabclose<cr>
 map <leader>tm :tabmove
-map <leader>t<leader> :tabnext
+map <leader>tl :tabnext
+map <leader>q  :cclose<cr>
+map <leader>o  :copen<cr>
+map <leader>g :Goyo<CR>
 "
 " Let 'tl' toggle between this and the last accessed tab
 "let g:lasttab = 1
@@ -308,19 +337,22 @@ map <leader>d :NERDTreeToggle<CR>
 " Fast saving
 nmap <leader>w :w!<cr>
 "Fast closing
-nmap <leader>q :q<cr>
+"nmap <leader>q :q<cr>
 
 " :W sudo saves the file
 " (useful for handling the permission-denied error)
-command W w !sudo tee % > /dev/null
-command Q q 
+command! W w !sudo tee % > /dev/null
+command! Q q
 
 " Another mappings
 cnoremap <C-p> <Up>
 cnoremap <C-n> <Down>
+map <F9> :e $HOME/.vimrc<CR>
+map <F6> :so $HOME/.vimrc<CR>
+map <F7> :e $HOME/Articles/References/bibfile.bib<CR>
 "
 "nnoremap <leader>m :w<CR>:!rubber --pdf --warn all %<CR>
-nnoremap <leader>m :w<CR>:!xelatex %<CR> :!bibtex %:r.aux <CR> :!xelatex %<CR> :!xelatex %<CR>
+nnoremap <leader>m :w<CR>:!xelatex %<CR> :!bibtex %:r.aux <CR> :!xelatex %<CR> :!xelatex %<CR><CR>
 nnoremap <leader>v :!zathura %:r.pdf &<CR><CR>
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

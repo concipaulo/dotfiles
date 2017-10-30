@@ -18,14 +18,14 @@ URxvt.urlLauncher:      /usr/bin/firefox-esr
 URxvt*saveLines: 12000
 !
 !!# Hack  Linux font
-URxvt*font: xft:Hack-Regular:pixelsize=13, xft:Fira Mono for Powerline:pixelsize=12
+URxvt*font: xft:Hack-Regular:pixelsize=14, xft:Fira Mono for Powerline:pixelsize=12
 !URxvt*font: xft:Fira Mono for Powerline:pixelsize=13
 !URxvt*font: xft:ProFont for Powerline:pixelsize=13
-URxvt*boldFont: xft:Hack-Bold:pixelsize=13, xft:Fira Mono for Powerline:pixelsize=12
+URxvt*boldFont: xft:Hack-Bold:pixelsize=14, xft:Fira Mono for Powerline:pixelsize=12
 !URxvt*boldFont: xft:Fira Mono for Powerline:pixelsize=13
 !URxvt*boldFont: xft:ProFont Bold for Powerline:pixelsize=13
 !
-URxvt*letterSpace: 0
+URxvt*letterSpace: -1
 !
 !!# scrollbar - true (default) or false
 URxvt*scrollBar: false
@@ -45,8 +45,8 @@ URxvt*internalBorder: 0
 !*pointerColorForeground: #93a1a1
 !
 !transparency
-!URxvt.background: rgba:0000/0000/0000/e000
-URxvt.background: rgba:0000/0000/0000/f809
+URxvt.background: rgba:0000/0000/0000/e000
+!URxvt.background: rgba:0000/0000/0000/f809
 URxvt.foreground: rgba:aaaa/aaaa/aaaa/7777
 !
 ! Green and Clean no transparency
@@ -195,7 +195,7 @@ URxvt.foreground: rgba:aaaa/aaaa/aaaa/7777
 ! LightGrey + White
 !*color7:  #cccccc
 !*color15: #ffffff
-! Monokai light scheme
+!Monokai light scheme
 !special
 ! *.foreground:   #49483e
 ! *.background:   #1e1e15
@@ -229,14 +229,15 @@ URxvt.foreground: rgba:aaaa/aaaa/aaaa/7777
 !! special
 *.foreground:   #eceff1
 *.background:   #263238
-*.cursorColor:  #eceff1
+!*.cursorColor:  #eceff1
 
 ! black
 *.color0:       #263238
 *.color8:       #37474f
 
 ! red
-*.color1:       #ff9800
+!*.color1:       #ff9800
+*.color1:       #ffa88c
 *.color9:       #ffa74d
 
 ! green
