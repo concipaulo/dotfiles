@@ -95,7 +95,7 @@ bindsym $mod+Shift+l move right 30
 bindsym $mod+z gaps outer current plus 5
 bindsym $mod+Shift+z gaps outer current minus 5
 
-bindsym $mod+x exec ~/.config/i3/lock.sh 
+bindsym $mod+x  exec --no-startup-id ~/.config/i3/lock.sh 
 bindsym $mod+Shift+x exec sudo shutdown now 
 
 bindsym $mod+c split toggle
@@ -204,10 +204,10 @@ bar {
 exec_always --no-startup-id xrandr --output LVDS-1 --primary --mode 1360x768 --pos 0x0 --rotate normal --output DP-1 --off --output HDMI-1 --off --output VGA-1 --off
 exec_always --no-startup-id xset -b 
 exec_always --no-startup-id xset -dpms
-exec --no-startup-id compton --config ~/.config/compton2.conf -b
+exec_always --no-startup-id compton --config ~/.config/compton2.conf -b
 exec --no-startup-id amixer -q sset Master 0%
-exec --no-startup-id ~/.config/i3/blurme &
+exec_always --no-startup-id ~/.config/i3/blurme_byme &
 #exec --no-startup-id xcompmgr
 exec --no-startup-id nm-applet
-exec --no-startup-id redshift
+exec_always --no-startup-id redshift
 exec --no-startup-id feh --bg-scale ~/.config/i3/wall.png

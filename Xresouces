@@ -20,10 +20,10 @@ URxvt*saveLines: 12000
 !!# Hack  Linux font
 URxvt*font: xft:Hack-Regular:pixelsize=14, xft:Fira Mono for Powerline:pixelsize=12
 !URxvt*font: xft:Fira Mono for Powerline:pixelsize=13
-!URxvt*font: xft:ProFont for Powerline:pixelsize=13
+!URxvt*font: xft:ProFont for Powerline:pixelsize=15
 URxvt*boldFont: xft:Hack-Bold:pixelsize=14, xft:Fira Mono for Powerline:pixelsize=12
 !URxvt*boldFont: xft:Fira Mono for Powerline:pixelsize=13
-!URxvt*boldFont: xft:ProFont Bold for Powerline:pixelsize=13
+!URxvt*boldFont: xft:ProFont Bold for Powerline:pixelsize=15
 !
 URxvt*letterSpace: -1
 !
