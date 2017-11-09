@@ -56,10 +56,11 @@ let g:airline_symbols.space = "\ua0"
 
 " " Nerdtree settings
 " " launch nerdtree on entry if no file is specified
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-set autochdir                " automatically change directory
-let NERDTreeChDirMode=2
+"autocmd StdinReadPre * let s:std_in=1
+"autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+"set autochdir                " automatically change directory
+"let NERDTreeChDirMode=2
+let g:nerdtree_tabs_open_on_gui_startup=0
 
 set ttimeout
 set timeoutlen=1000 ttimeoutlen=1
@@ -102,6 +103,13 @@ if &term =~ "xterm\\|rxvt"
   " use \003]12;gray\007 for gnome-terminal and rxvt up to version 9.21
 endif
 
+"let g:syntastic_quiet_messages = {
+"    \ "!level":  "errors",
+"    \ "type":    "style",
+"    \ "regex":   '\m\[C03\d\d\]',
+"    \ "file:p":  ['\m^/usr/include/', '\m\c\.h$'] }
+
+let g:syntastic_quiet_messages = { "level": "warnings" }
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

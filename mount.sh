@@ -28,7 +28,7 @@ elif [[ $(blkid -o value -s UUID $d ) = '6C67-A7B4' ]]; then
 	mount $d /mnt/sony4
 	echo "Sony USB mounted to /mnt/sony4."
 
-elif [[ $(blkid -o value -s UUID $d ) = '328C-8425' ]]; then
+elif [[ $(blkid -o value -s UUID $d ) = '05BD-6288' ]]; then
 	mkdir -p /mnt/black
 	mount $d /mnt/black
 	echo "Black USB mounted to /mnt/black."

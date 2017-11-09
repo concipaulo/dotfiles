@@ -122,6 +122,22 @@ if [ -f ~/.bash_greetings ]; then
     . ~/.bash_greetings
 fi
 
+function _update_ps1() {
+    PS1="$(powerline-shell $?)"
+}
+
+if [ "$TERM" != "linux" ]; then
+    PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
+fi
+
+# function _update_ps1() {
+#     PS1="$(~/go/bin/powerline-go -error $?)"
+# }
+
+# if [ "$TERM" != "linux" ]; then
+#     PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
+# fi
+# source ~/.bash-powerline.sh
 setxkbmap -model pc104 -layout us intl
 setxkbmap -option caps:swapescape
 
