@@ -4,4 +4,4 @@
 #neofetch
 echo "$(date +"%x at %T")"
 echo "Welcome back"
-echo "$(whoami)" | figlet | lolcat
+#echo "$(whoami)" | figlet | lolcat

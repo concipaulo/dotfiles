@@ -117,18 +117,20 @@ fi
 export TECHOME='/opt/tec10'
 export PATH=$PATH:$TECHOME/bin
 
+#golang
+export GOPATH=$HOME/go
 
 if [ -f ~/.bash_greetings ]; then
     . ~/.bash_greetings
 fi
 
-function _update_ps1() {
-    PS1="$(powerline-shell $?)"
-}
+# function _update_ps1() {
+#     PS1="$(powerline-shell $?)"
+# }
 
-if [ "$TERM" != "linux" ]; then
-    PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
-fi
+# if [ "$TERM" != "linux" ]; then
+#     PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
+# fi
 
 # function _update_ps1() {
 #     PS1="$(~/go/bin/powerline-go -error $?)"

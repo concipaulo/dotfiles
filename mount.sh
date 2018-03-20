@@ -8,7 +8,7 @@ if [[ $(blkid -o value -s UUID $d ) = '1A3FE4E62BC1A399' ]]; then
 	mount $d /mnt/wd2
 	echo "2TB WD drive mounted to /mnt/wd2."
 
-elif [[ $(blkid -o value -s UUID $d ) = 'A0C8-1BDD' ]]; then
+elif [[ $(blkid -o value -s UUID $d ) = '39C4-3CD2' ]]; then
 	mkdir -p /mnt/sd
 	mount $d /mnt/sd
 	echo "SD card mounted to /mnt/sd."

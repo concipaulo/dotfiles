@@ -23,28 +23,35 @@ execute pathogen#infect()
 "call pathogen#runtime append all bundles()
 syntax on
 "Airline theme
-let g:airline_theme='molokai'
+let g:airline_theme='minimalist'
 let g:airline#extensions#tabline#enabled = 1
-let g:airline_powerline_fonts = 1
+let g:airline_powerline_fonts = 0
 let g:airline#extensions#ctrlp#enable = 1
 let g:CtrlSpaceStatuslineFunction = "airline#extensions#ctrlspace#statusline()"
 "let g:airline_section_z = airline#section#create(['windowswap', '%3p%% ', 'linenr', ':%3v'])
 let g:airline#extensions#whitespace#show_message = 0
+let g:airline#extensions#whitespace#enable = 0
+" let g:airline_whitespace_disable = 1
 "
 if !exists('g:airline_symbols')
       let g:airline_symbols = {}
 endif
 let g:airline_symbols.space = "\ua0"
 
-  let g:airline_left_sep = ''
-  let g:airline_left_alt_sep = ''
-  let g:airline_right_sep = ''
-  let g:airline_right_alt_sep = ''
+  " let g:airline_left_sep = ''
+  " let g:airline_left_alt_sep = ''
+  " let g:airline_right_sep = ''
+  " let g:airline_right_alt_sep = ''
   let g:airline_symbols.branch = ''
   let g:airline_symbols.readonly = ''
   let g:airline_symbols.linenr = '☰'
   let g:airline_symbols.maxlinenr = ''
 
+" Use fd for ctrlp.
+if executable('fd')
+    let g:ctrlp_user_command = 'fd -c never "" %s'
+    let g:ctrlp_use_caching = 0
+endif
 
 " Vimtex settings
 " " Note; <leader>ll builds and <leader>le shows compile errors
@@ -68,7 +75,7 @@ set timeoutlen=1000 ttimeoutlen=1
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Sets how many lines of history VIM has to remember
-set history=200
+set history=2000
 
 set nocompatible
 
@@ -92,6 +99,7 @@ set autoread
 "let &t_SR = "\<Esc>[4 q"
 "let &t_EI = "\<Esc>[2 q"
 
+"Took from some geek I cant remember
 if &term =~ "xterm\\|rxvt"
   " use an orange cursor in insert mode
   let &t_SI = "\<Esc>]12;orange\x7"
@@ -137,8 +145,8 @@ set cmdheight=1
 set hid
 
 " Configure backspace so it acts as it should act
-"set backspace=eol,start,indent
-"set whichwrap+=<,>,h,l
+set backspace=eol,start,indent
+set whichwrap+=<,>,h,l
 
 " Ignore case when searching
 "set ignorecase
@@ -182,7 +190,10 @@ set relativenumber
 " Enable syntax highlighting
 " syntax enable
 set t_Co=256
-" colorscheme default
+"
+let g:seoul256_background=237
+let g:seoul256_srgb = 1
+colorscheme seoul256
 "
 set background=dark
 "
@@ -203,13 +214,15 @@ set ffs=unix,dos,mac
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Files, backups and undo
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Turn backup off, since most stuff is in SVN, git et.c anyway...
+" Turn backup off, since most stuff is in SVN, git
 set nobackup
 set nowb
 set noswapfile
+"
 "Folding 
 au BufWinLeave ?* mkview
 au BufWinEnter ?* silent loadview
+"
 "Markdown files
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 "let g:markdown_fenced_languages = ['html', 'python', bash=sh']
@@ -283,6 +296,10 @@ map <leader>q  :cclose<cr>
 map <leader>o  :copen<cr>
 map <leader>g :Goyo<CR>
 "
+function! GoyoAfter()
+    set background=dark
+endfunction
+"
 " Let 'tl' toggle between this and the last accessed tab
 "let g:lasttab = 1
 "nmap <Leader>tl :exe "tabn ".g:lasttab<CR>
@@ -292,21 +309,21 @@ map <leader>g :Goyo<CR>
 " Opens a new tab with the current buffer's path
 " Super useful when editing files in the same directory
 map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
-"
+
 " Switch CWD to the directory of the open buffer
-map <leader>cd :cd %:p:h<cr>:pwd<cr>
+" map <leader>cd :cd %:p:h<cr>:pwd<cr>
 "
 map <leader>S :SyntasticToggleMode<CR>
 "
 " Specify the behavior when switching between buffers
-try
-  set switchbuf=useopen,usetab,newtab
-  set stal=2
-catch
-endtry
+" try
+"   set switchbuf=useopen,usetab,newtab
+"   set stal=2
+" catch
+" endtry
 "
 " Return to last edit position when opening files (You want this!)
-au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+" au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 "
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -316,30 +333,32 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g
 set laststatus=2
 "
 " Format the status line
-set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l\ \ Column:\ %c
+" set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l\ \ Column:\ %c
+set statusline=\ %F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l\ \ Column:\ %c
 "
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Editing mappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Remap VIM 0 to first non-blank character
-map 0 ^
+" map 0 ^
 "
 " Delete trailing white space on save, useful for some filetypes ;)
-fun! CleanExtraSpaces()
-    let save_cursor = getpos(".")
-    let old_query = getreg('/')
-    silent! %s/\s\+$//e
-    call setpos('.', save_cursor)
-    call setreg('/', old_query)
-endfun
-"
-if has("autocmd")
-    autocmd BufWritePre *.txt,*.js,*.py,*.wiki,*.sh,*.coffee :call CleanExtraSpaces()
-endif
-"Easy expansion of the active file directory
-cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
+" fun! CleanExtraSpaces()
+"     let save_cursor = getpos(".")
+"     let old_query = getreg('/')
+"     silent! %s/\s\+$//e
+"     call setpos('.', save_cursor)
+"     call setreg('/', old_query)
+" endfun
+" "
+" if has("autocmd")
+"     autocmd BufWritePre *.txt,*.js,*.py,*.wiki,*.sh,*.coffee :call CleanExtraSpaces()
+" endif
+" "Easy expansion of the active file directory
+" cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 
+"NerdTree
 map <leader>d :NERDTreeToggle<CR>
 
 " Fast saving
@@ -366,14 +385,14 @@ nnoremap <leader>v :!zathura %:r.pdf &<CR><CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Spell checking
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Pressing ,ss will toggle and untoggle spell checking
+" Pressing \ss will toggle and untoggle spell checking
 map <leader>ss :setlocal spell!<cr>
 "
 " Shortcuts using <leader>
-map <leader>sn ]s
-map <leader>sp [s
-map <leader>sa zg
-map <leader>s? z=
+" map <leader>sn ]s
+" map <leader>sp [s
+" map <leader>sa zg
+" map <leader>s? z=
 "
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -396,33 +415,33 @@ map <leader>pp :setlocal paste!<cr>
 " => Helper functions
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Returns true if paste mode is enabled
-function! HasPaste()
-    if &paste
-        return 'PASTE MODE  '
-    endif
-    return ''
-endfunction
+" function! HasPaste()
+"     if &paste
+"         return 'PASTE MODE  '
+"     endif
+"     return ''
+" endfunction
 
 " Don't close window, when deleting a buffer
-command! Bclose call <SID>BufcloseCloseIt()
-function! <SID>BufcloseCloseIt()
-   let l:currentBufNum = bufnr("%")
-   let l:alternateBufNum = bufnr("#")
+" command! Bclose call <SID>BufcloseCloseIt()
+" function! <SID>BufcloseCloseIt()
+"    let l:currentBufNum = bufnr("%")
+"    let l:alternateBufNum = bufnr("#")
 
-   if buflisted(l:alternateBufNum)
-     buffer #
-   else
-     bnext
-   endif
+"    if buflisted(l:alternateBufNum)
+"      buffer #
+"    else
+"      bnext
+"    endif
 
-   if bufnr("%") == l:currentBufNum
-     new
-   endif
+"    if bufnr("%") == l:currentBufNum
+"      new
+"    endif
 
-   if buflisted(l:currentBufNum)
-     execute("bdelete! ".l:currentBufNum)
-   endif
-endfunction
+"    if buflisted(l:currentBufNum)
+"      execute("bdelete! ".l:currentBufNum)
+"    endif
+" endfunction
 "========================================================================
 " vim to show comands on normal mode 
 set showcmd

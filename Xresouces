@@ -18,12 +18,13 @@ URxvt.urlLauncher:      /usr/bin/firefox-esr
 URxvt*saveLines: 12000
 !
 !!# Hack  Linux font
-URxvt*font: xft:Hack-Regular:pixelsize=14, xft:Fira Mono for Powerline:pixelsize=12
-!URxvt*font: xft:Fira Mono for Powerline:pixelsize=13
-!URxvt*font: xft:ProFont for Powerline:pixelsize=15
-URxvt*boldFont: xft:Hack-Bold:pixelsize=14, xft:Fira Mono for Powerline:pixelsize=12
-!URxvt*boldFont: xft:Fira Mono for Powerline:pixelsize=13
-!URxvt*boldFont: xft:ProFont Bold for Powerline:pixelsize=15
+!URxvt*font: xft:Hack-Regular:pixelsize=14, xft:Fira Mono for Powerline:pixelsize=13
+URxvt*font: xft:Fira Mono for Powerline:pixelsize=14,xft:Hack-Regular:pixelsize=14
+!URxvt*font: xft:Fura-Mono Regular Powerline:pixelsize=13
+!URxvt*font: xft:ProFont for Powerline:pixelsize=14
+!URxvt*boldFont: xft:Hack-Bold:pixelsize=14, xft:Fira Mono for Powerline:pixelsize=12
+URxvt*boldFont: xft:Fira Mono for Powerline:Bold:pixelsize=14
+!URxvt*boldFont: xft:ProFont Bold for Powerline:Bold:pixelsize=14
 !
 URxvt*letterSpace: -1
 !
@@ -33,11 +34,12 @@ URxvt*scrollBar: false
 !!# scrollbar position - left=false (default) or right=true
 URxvt*scrollBar_right: false
 !
-URxvt.iso14755:         False
+URxvt.iso14755: false
 !
 URxvt.cursorBlink: 1
-URxvt.cursorUnderline: 0
-URxvt*internalBorder: 0 
+URxvt.cursorUnderline: 1
+URxvt.internalBorder: 0
+URxvt.externalBorder: 0
 !
 !*fadeColor: #002b36
 !*cursorColor: #93a1a1
@@ -45,9 +47,9 @@ URxvt*internalBorder: 0
 !*pointerColorForeground: #93a1a1
 !
 !transparency
-URxvt.background: rgba:0000/0000/0000/e000
+!URxvt.background: rgba:0000/0000/0000/e000
 !URxvt.background: rgba:0000/0000/0000/f809
-URxvt.foreground: rgba:aaaa/aaaa/aaaa/7777
+!URxvt.foreground: rgba:aaaa/aaaa/aaaa/7777
 !
 ! Green and Clean no transparency
 !*.foreground:   #ffffff
@@ -227,42 +229,65 @@ URxvt.foreground: rgba:aaaa/aaaa/aaaa/7777
 !
 !Material
 !! special
-*.foreground:   #eceff1
-*.background:   #263238
+!*.foreground:   #eceff1
+!*.background:   #263238
 !*.cursorColor:  #eceff1
 
 ! black
-*.color0:       #263238
-*.color8:       #37474f
-
+!*.color0:       #263238
+!*.color8:       #37474f
+!
 ! red
 !*.color1:       #ff9800
-*.color1:       #ffa88c
-*.color9:       #ffa74d
-
+!*.color1:       #ffa88c
+!*.color9:       #ffa74d
+!
 ! green
-*.color2:       #8bc34a
-*.color10:      #9ccc65
+!*.color2:       #8bc34a
+!*.color10:      #9ccc65
 
 ! yellow
-*.color3:       #ffc107
-*.color11:      #ffa000
+!*.color3:       #ffc107
+!*.color11:      #ffa000
 
 ! blue
-*.color4:       #03a9f4
-*.color12:      #81d4fa
+!*.color4:       #03a9f4
+!*.color12:      #81d4fa
 
 ! magenta
-*.color5:       #e91e63
-*.color13:      #ad1457
+!*.color5:       #e91e63
+!*.color13:      #ad1457
 
 ! cyan
-*.color6:       #009688
-*.color14:      #26a69a
+!*.color6:       #009688
+!*.color14:      #26a69a
 
 ! white
-*.color7:       #cfd8dc
-*.color15:      #eceff1
+!*.color7:       #cfd8dc
+!*.color15:      #eceff1
+!seoul256 by @junegunn
+URxvt*background: #3a3a3a 
+URxvt*foreground: #d0d0d0 
+URxvt*color0: #4e4e4e
+URxvt*color1: #d68787 
+URxvt*color2: #5f865f
+URxvt*color3: #d8af5f
+URxvt*color4: #85add4
+URxvt*color5: #d7afaf
+URxvt*color6: #87afaf
+URxvt*color7: #d0d0d0
+URxvt*color8: #626262
+URxvt*color9: #d75f87
+URxvt*color10: #87af87
+URxvt*color11: #ffd787 
+URxvt*color12: #add4fb
+URxvt*color13: #ffafaf
+URxvt*color14: #87d7d7
+URxvt*color15: #e4e4e4
+URxvt*cursorColor: #d0d0d0
+URxvt*cursorColor2: #3a3a3a
+URxvt*colorBD: #e4e4e4
+
 !#################################
 ! ROFI Color theme
 !#################################
