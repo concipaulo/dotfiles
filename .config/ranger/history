@@ -1,0 +1,11 @@
+search refs
+find 
+rename 1-s2.0-037704279390028A-main.pdf vuik1993.pdf
+rename vuik1993.pdf
+rename vorst1977.pdf
+open_with 
+rename condensador.pdf
+cd 
+wq
+delete
+shell 

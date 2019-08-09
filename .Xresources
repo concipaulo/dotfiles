@@ -1,0 +1,56 @@
+!#################################
+!__  __                                            
+!\ \/ /_ __ ___  ___  ___  _   _ _ __ ___ ___  ___ 
+! \  /| '__/ _ \/ __|/ _ \| | | | '__/ __/ _ \/ __|
+! /  \| | |  __/\__ \ (_) | |_| | | | (_|  __/\__ \
+!/_/\_\_|  \___||___/\___/ \__,_|_|  \___\___||___/
+!
+!#################################
+Xft.dpi:                    96
+Xft.antialias:              true
+Xft.rgba:                   rgb
+Xft.hinting:                true
+Xft.hintstyle:              hintslight
+!#################################
+! URxvt configs
+!
+Urxvt.title: URxvt
+URxvt.scrollstyle: plain
+URxvt.depth: 32
+URxvt.perl-ext-common: default, keyboard-select
+URxvt.matcher.button: 1
+URxvt.jumpScroll: true
+URxvt.loginShell: true
+URxvt.urlLauncher: /usr/bin/qutebrowser
+URxvt.keysym.M-Escape: perl:keyboard-select:activate
+Urxvt.keyboard-select.clipboard: true
+!
+URxvt.saveLines: 12000
+!
+URxvt*font: xft:SauceCodePro Nerd Font Mono:style=Light: size=11, PowerlineSymbols:style=Medium: size=9
+URxvt*boldfont: xft:SauceCodePro Nerd Font Mono:style=Bold: size=11, PowerlineSymbols:style=Medium: size=9
+!
+URxvt*letterSpace: -1
+!
+! scrollbar - true (default) or false
+URxvt*scrollBar: false
+!
+URxvt.iso14755: false
+!
+URxvt.cursorBlink: 1
+URxvt.cursorUnderline: 0
+URxvt.internalBorder: 0
+URxvt.externalBorder: 0
+!
+!#################################
+! ROFI Color theme
+!#################################
+rofi.fullscreen: false
+rofi.separator-style: none
+rofi.hide-scrollbar: true
+rofi.show-icons: true
+rofi.drun-icon-theme: Papirus-Dark
+rofi.lines: 8
+rofi.position:center
+rofi.color-enabled: true
+!vim filetype:Xresouces
