@@ -1,0 +1,2 @@
+#!/bin/sh
+dpkg -s bc > /dev/null && echo "Welcome to the Calculator." && bc -lq

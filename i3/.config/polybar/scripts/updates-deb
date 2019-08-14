@@ -1,0 +1,13 @@
+#!/bin/sh
+
+if ! updates=$(sudo apt list --upgradable 2> /dev/null | wc -l ); then
+    updates=0
+fi
+
+if [ "$updates" -gt 1 ]; then
+    upd=$((updates-1))
+    echo "$upd "
+else
+    echo "0 "
+fi
+

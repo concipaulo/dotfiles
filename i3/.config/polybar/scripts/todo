@@ -1,0 +1,12 @@
+#!/bin/sh
+
+if ! todo=$(cat ~/.todo | wc -l ); then
+    todo=0
+fi
+
+if [ "$todo" -gt 0 ]; then
+    echo "$todo"
+else
+    echo "0 "
+fi
+
