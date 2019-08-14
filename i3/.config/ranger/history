@@ -8,5 +8,11 @@ cd
 wq
 shell 
 bulkrename 
-delete
 open_with 
+move_parent /i3
+open_with vim
+clear
+abort 
+
+delete 
+delete
