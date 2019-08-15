@@ -59,26 +59,69 @@ underline-size = 2
 line-color = ${colors.underline} 
 
 padding-left = 1.5
-padding-right = 1
-module-margin = 1
+padding-right = 1.5
+module-margin = 1.5
 
-; font-0 = Incosolata for Powerline:size=11;2
-font-0 = SF Pro Display:style=Semibold:size=9;2
-font-1 = FontAwesome:size=10;2
-font-2 = Inconsolata for Powerline:size=11:weight=bold;2
-font-3 = "Material Icons:size=13;0"
-font-4 = SF Pro Display:style=Semibold:size=9;2
-; font-5 = Twitter Color Emoji:style=Regular:size=1;2
+font-0 = SF Pro Display:style=Semibold:size=10;2
+font-1 = FontAwesome:style=Regular:size=10;2
+font-2 = Weather Icons:style=Regular:size=10;2
+font-3 = Font Awesome 5 Free,Font Awesome 5 Free Solid:style=Solid:size=10;2
+font-4 = SF Pro Display:style=Semibold:size=10;2
 font-5 = SauceCodePro Nerd Font:style=Regular:size=10;2
-font-6 = PowerlineSymbols:style=Medium:size=10;2
+; font-6 = PowerlineSymbols:style=Medium:size=10;2
 
-modules-left = i3
+modules-left = i3 spotify
 modules-center = title
-modules-right = todo update keyboard wired volume
+modules-right = clima todo update keyboard wired volume powermenu
 
 ;tray-position = 
 ;tray-detached = false
 ;tray-padding = 0
+
+[module/powermenu]
+type = custom/menu
+label-open= 
+
+label-close = x
+; Optional item separator
+; Default: none
+label-separator = |
+
+menu-0-0 = Browsers
+menu-0-0-exec = menu-open-1
+menu-0-1 = Multimedia
+menu-0-1-exec = menu-open-2
+
+menu-1-0 = Firefox
+menu-1-0-exec = firefox &
+menu-1-1 = Qute
+menu-1-1-exec = qutebrowser &
+
+menu-2-0 = Gimp
+menu-2-0-exec = gimp &
+menu-2-1 = Scrot
+menu-2-1-exec = scrot &
+
+label-open-padding = 2
+label-open-background = ${colors.primary}
+label-open-foreground = ${colors.foreground}
+; click-left = ~/.config/polybar/scripts/p_menu
+; click-left = notify-send -u critical "Meow!"
+; click-right = ~/.config/polybar/scripts/p_menu
+
+[module/spotify]
+type = custom/script
+; label = %{F#01AB84}%output%%{F-}
+format = <label>
+; label = %output%
+format-prefix = "  "
+; format-background =
+; format-foreground = 
+format-prefix-foreground = ${colors.secondary}
+click-left = playerctl next
+click-right = playerctl play-pause
+exec = python ~/.config/polybar/scripts/spotify.py -t 34 -f '{artist}-{song}'
+interval = 1
 
 [module/update]
 type = custom/script
@@ -132,31 +175,13 @@ label-focused-background = #3f3f3f
 label-focused-underline = #fba922
 label-focused-padding = 2
 
-; Available tokens:
-;   %name%
-;   %icon%
-;   %index%
-;   %output%
-; Default: %icon%  %name%
 label-unfocused = %name%%icon%
 label-unfocused-padding = 1
 
-; Available tokens:
-;   %name%
-;   %icon%
-;   %index%
-;   %output%
-; Default: %icon%  %name%
 label-visible = %name%%icon%
 label-visible-underline = #555555
 label-visible-padding = 1
 
-; Available tokens:
-;   %name%
-;   %icon%
-;   %index%
-;   %output%
-; Default: %icon%  %name%
 label-urgent = %name%%icon%
 label-urgent-foreground = #000000
 label-urgent-background = #bd2c40
@@ -167,33 +192,11 @@ label-separator = |
 label-separator-padding = 0
 ; label-separator-foreground = #ffb52a
 label-separator-foreground = ${colors.foreground-alt}
-
-;label-focused = ×
-;;label-focused-foreground = ${xrdb:color6}
-;label-focused-underline = ${colors.underline}
-;;label-focused-background = ${colors.background}
-;label-focused-padding = 1
-;
-;label-unfocused = •
-;;label-unfocused-foreground = ${colors.foreground}
-;;label-unfocused-background = ${colors.background}
-;label-unfocused-padding = 1
-;
-;label-visible = •
-;;label-unfocused-foreground = ${colors.foreground}
-;;label-unfocused-background = ${colors.background}
-;label-visible-padding = 1
-;
-;label-urgent = !
-;label-urgent-foreground = #EC5f67
-;;label-urgent-background = ${colors.background}
-;label-urgent-underline = ${colors.underline-0}
-;label-urgent-padding = 1
 ;
 [module/clima]
 type = custom/script
-exec = curl -s "wttr.in/Videira?format=%c%t"
-interval = 3600
+exec = ~/.config/polybar/scripts/weather
+interval = 900
 
 [module/title]
 type = internal/xwindow
@@ -247,10 +250,9 @@ label-underline = ${colors.underline}
 
 [module/volume]
 type = internal/alsa
-; format-volume = <bar-volume> <label-volume>
-format-volume = <bar-volume>
-;format-volume-underline = ${colors.underline}
-format-muted = ${self.format-volume}
+format-volume = <label-volume><bar-volume>
+; format-volume-underline = ${colors.alert}
+; format-muted = ${self.format-volume}
 format-muted-foreground = ${xrdb:color8:#8888}
 
 bar-volume-width = 10
@@ -263,10 +265,12 @@ format-volume-font = 3
 format-muted-font = ${self.format-volume-font}
 ; format-muted = <label-muted>
 
-label-volume =  %{T5}%percentage%%{T-}
-label-muted =  %{T5}%percentage%%{T-}
+label-volume = 
+label-muted = 
 ; ramp-volume-0 = 
 ; ramp-volume-1 =
+
+; click-left = alsamixer
 
 [module/keyboard]
 type = internal/xkeyboard

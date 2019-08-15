@@ -12,6 +12,8 @@ Xft.rgba:                   rgb
 Xft.hinting:                true
 Xft.hintstyle:              hintslight
 !#################################
+! st configs
+*.alpha:0.98
 ! URxvt configs
 Urxvt.title: URxvt
 URxvt.scrollstyle: plain
