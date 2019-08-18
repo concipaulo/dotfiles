@@ -43,7 +43,7 @@ floating_modifier $mod
 # bindsym $mod+Shift+e exec --no-startup-id "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 # start a terminal
-bindsym $mod+Return exec --no-startup-id st fish
+bindsym $mod+Return exec --no-startup-id $term -e fish
 bindsym $mod+Shift+Return exec --no-startup-id $term
 bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
@@ -88,7 +88,7 @@ bindsym $mod+a gaps inner current plus 5
 bindsym $mod+Shift+a gaps inner current minus 5
 
 bindsym $mod+s scratchpad show
-bindsym $mod+Shift+s move scratchpap
+bindsym $mod+Shift+s move scratchpad
 
 bindsym $mod+d exec --no-startup-id dmen
 bindsym $mod+Shift+d gaps inner all set 0; gaps outer all set 0
@@ -219,7 +219,6 @@ exec_always --no-startup-id xset dpms 0
 exec_always --no-startup-id compton --config ~/.config/compton2.conf -b
 exec --no-startup-id amixer -q sset Master 0%
 # exec_always --no-startup-id ~/.config/i3/blurme_byme
-#exec --no-startup-id xcompmgr
 exec --no-startup-id nm-applet
 # exec --no-startup-id feh --bg-scale ~/.config/i3/wall.png
 exec --no-startup-id xinput --set-prop "SynPS/2 Synaptics TouchPad" "libinput Tapping Enabled" 1
@@ -228,4 +227,4 @@ exec --no-startup-id xinput --set-prop "SynPS/2 Synaptics TouchPad" "libinput Na
 exec_always --no-startup-id setxkbmap -option ctrl:nocaps
 exec --no-startup-id ~/.config/dunst/reload_dunst.sh
 exec --no-startup-id wal -R
-exec --no-startup-id conky > /dev/null 2>&1 &
+# exec --no-startup-id conky > /dev/null 2>&1 &

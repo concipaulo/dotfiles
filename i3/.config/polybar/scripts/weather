@@ -1,0 +1,52 @@
+#!/usr/bin/env bash
+
+WEATHER_API_KEY="af5359375f0ccacb50dba29c03c4c7a4"
+location="-27.1585,-51.1585"
+units=ca
+url="https://api.darksky.net/forecast/${WEATHER_API_KEY}/${location}?units=${units}&exclude=minutely,hourly,daily,alerts,flags"
+
+api_response=$(curl -s "${url}")
+
+# echo ${api_response}
+temperature=$(echo "${api_response}" | jq '.currently.temperature' | xargs printf '%.*f\n' 0)
+weather_icon=$(echo "${api_response}" | jq '.currently.icon')
+summary=$(echo "${api_response}" | jq '.currently.summary' | tr -d '"')
+
+case "${weather_icon}" in
+  '"clear-day"')
+    icon=" "
+    # icon=""
+    ;;
+  '"clear-night"')
+    icon=" "
+    # icon=""
+    ;;
+  '"rain"')
+    icon=" "
+    ;;
+  '"snow"')
+    icon=" "
+    ;;
+  '"sleet"')
+    icon=" "
+    ;;
+  '"wind"')
+    # icon=""
+    icon=" "
+    ;;
+  '"fog"')
+    icon=" "
+    ;;
+  '"cloudy"')
+    icon=" "
+    ;;
+  '"partly-cloudy-day"')
+    icon=" "
+    ;;
+  '"partly-cloudy-night"')
+    icon=" "
+    # icon=""
+    ;;
+esac
+
+echo -n "%{T1}%{F#01AB84}${icon}%{F-}%{T-}  ${summary}  %{F#01AB84}%{F-} ${temperature} °C"

@@ -1,7 +1,7 @@
 ##!/usr/bin/conky -d -c
 alignment top_right
 background yes
-#border_margin 5
+border_margin 2
 border_width 5
 color0 555555			#
 color1 FCAF3E			# zolty
@@ -34,7 +34,8 @@ own_window yes
 own_window_colour 000000	# Black
 own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
 own_window_transparent yes
-own_window_type override 	## normal
+own_window_type override
+own_window_class conky
 pad_percents 2			# to co nizej, miejsc po przecinku
 short_units yes			# krotka wersja podawania wielkosci dyskow np. 612.21M/3.80G
 stippled_borders 3
@@ -45,14 +46,13 @@ uppercase no
 use_spacer right
 use_xft yes
 xftalpha 0.75
-xftfont sans:size=7
+xftfont sans:size=8
 
 TEXT
 ${color2}${goto 10}${font DejaVu Sans Mono:size=44}${time %H}${font DejaVu Sans Mono:size=20}${voffset -25}'${time %M}${font DejaVu Sans Mono:size=8}${voffset -12}${time %S}
 ${color2}${goto 85}${voffset 10}${font :size=8}${time %A}
 ${color2}${goto 85}${voffset 1}${font :size=8}${time %d %B %Y}
 #${color}${font RsbillsDng:size=14}${font}${font DejaVu Sans Mono:size=8}${execpi 3600 DJS=`date +%_d`; cal -m8 | sed '1d' | sed '/./!d' | sed 's/$/                     /' | fold -w 21 | sed -n '/^.\{21\}/p' | sed 's/^/${alignc} /' | sed /" $DJS "/s/" $DJS "/" "'${color2}'"$DJS"'${color}'" "/}${font}
-
 
 
 ${voffset -20}${color2}${font led:size=10}SYSTEM ${font}$hr

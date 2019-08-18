@@ -1,6 +1,4 @@
 [colors]
-; background = #333333
-; background-alt = #1D1F21
 background = ${xrdb:color0:#33333}
 foreground = ${xrdb:color7:#1D1F2}
 foreground-alt = ${xrdb:color7:#54858}
@@ -8,15 +6,9 @@ primary = ${xrdb:color1:#ffb52}
 secondary = ${xrdb:color2:#e6005}
 alert = ${xrdb:color3:#d81b60}
 underline = ${xrdb:color4:#ffb300}
-; foreground = #000000
-; foreground-alt = #548587
 fg-1 = #ffaf5f
 fg-2 = #ffd494
-; primary = #ffb52a
-; secondary = #e60053
-; underline = #b04f41
 underline-0 = #ff1a1a
-; alert = #bd2c40
 red = #e53935
 pink = #d81b60
 purple = #8e24aa
@@ -41,9 +33,9 @@ blue-gray = #546e7a
 monitor = LVDS1
 
 ; size and location of the fking bar
-width = 96%
-height = 20
-offset-x = 25
+width = 80%
+height = 22
+offset-x = 140
 offset-y = 3
 wm-restack = i3
 override-redirect = true
@@ -60,17 +52,17 @@ line-color = ${colors.underline}
 
 padding-left = 1.5
 padding-right = 1.5
-module-margin = 1.5
+module-margin = 1.2
 
-font-0 = SF Pro Display:style=Semibold:size=10;2
-font-1 = FontAwesome:style=Regular:size=10;2
-font-2 = Weather Icons:style=Regular:size=10;2
-font-3 = Font Awesome 5 Free,Font Awesome 5 Free Solid:style=Solid:size=10;2
-font-4 = SF Pro Display:style=Semibold:size=10;2
-font-5 = SauceCodePro Nerd Font:style=Regular:size=10;2
-; font-6 = PowerlineSymbols:style=Medium:size=10;2
+font-0 = sf pro display:style=semibold:size=10;2
+font-1 = fontawesome:style=regular:size=10;2
+font-2 = weather icons:style=regular:size=10;2
+font-3 = font awesome 5 free,font awesome 5 free solid:style=solid:size=10;2
+font-4 = sf pro display:style=semibold:size=10;2
+font-5 = saucecodepro nerd font:style=regular:size=10;2
+; font-6 = powerlinesymbols:style=medium:size=10;2
 
-modules-left = i3 spotify
+modules-left = i3
 modules-center = title
 modules-right = clima todo update keyboard wired volume powermenu
 
@@ -83,45 +75,30 @@ type = custom/menu
 label-open= 
 
 label-close = x
-; Optional item separator
-; Default: none
+; optional item separator
+; default: none
 label-separator = |
 
-menu-0-0 = Browsers
+menu-0-0 = browsers
 menu-0-0-exec = menu-open-1
-menu-0-1 = Multimedia
+menu-0-1 = multimedia
 menu-0-1-exec = menu-open-2
 
-menu-1-0 = Firefox
+menu-1-0 = firefox
 menu-1-0-exec = firefox &
-menu-1-1 = Qute
+menu-1-1 = qute
 menu-1-1-exec = qutebrowser &
 
-menu-2-0 = Gimp
+menu-2-0 = gimp
 menu-2-0-exec = gimp &
-menu-2-1 = Scrot
+menu-2-1 = scrot
 menu-2-1-exec = scrot &
 
 label-open-padding = 2
 label-open-background = ${colors.primary}
 label-open-foreground = ${colors.foreground}
-; click-left = ~/.config/polybar/scripts/p_menu
-; click-left = notify-send -u critical "Meow!"
-; click-right = ~/.config/polybar/scripts/p_menu
+; click-left = notify-send -u critical "meow!"
 
-[module/spotify]
-type = custom/script
-; label = %{F#01AB84}%output%%{F-}
-format = <label>
-; label = %output%
-format-prefix = "  "
-; format-background =
-; format-foreground = 
-format-prefix-foreground = ${colors.secondary}
-click-left = playerctl next
-click-right = playerctl play-pause
-exec = python ~/.config/polybar/scripts/spotify.py -t 34 -f '{artist}-{song}'
-interval = 1
 
 [module/update]
 type = custom/script
@@ -129,7 +106,6 @@ label = "%output%"
 format-prefix = "  "
 format-background =
 format-foreground = 
-; click-right = ~/scripts/pacman-dmenu
 exec = ~/.config/polybar/scripts/updates-deb
 interval = 3600
 
@@ -155,20 +131,20 @@ fuzzy-match = true
 
 format = <label-state> <label-mode>
 
-; Available tokens:
+; available tokens:
 ;   %mode%
-; Default: %mode%
+; default: %mode%
 label-mode = %mode%
 label-mode-padding = 2
 ; label-mode-background = #e60053
 label-mode-background =${colors.background} 
 
-; Available tokens:
+; available tokens:
 ;   %name%
 ;   %icon%
 ;   %index%
 ;   %output%
-; Default: %icon%  %name%
+; default: %icon%  %name%
 label-focused = %name%%icon%
 label-focused-foreground = ${colors.foreground}
 label-focused-background = #3f3f3f
@@ -187,7 +163,7 @@ label-urgent-foreground = #000000
 label-urgent-background = #bd2c40
 label-urgent-padding = 1
 
-; Separator in between workspaces
+; separator in between workspaces
 label-separator = |
 label-separator-padding = 0
 ; label-separator-foreground = #ffb52a
@@ -200,16 +176,16 @@ interval = 900
 
 [module/title]
 type = internal/xwindow
-; Available tags:
+; available tags:
 ;   <label> (default)
 format = <label>
 format-background = ${colors.background}
 format-foreground = ${colors.foreground}
 format-padding = 4
 
-; Available tokens:
+; available tokens:
 ;   %title%
-; Default: %title%
+; default: %title%
 label = %{T5}%title% %{T}
 label-maxlen = 40
 
@@ -222,31 +198,6 @@ format-disconnected = <label-disconnected>
 label-connected =   %{T5}%local_ip%%{T-}
 label-disconnected = 
 
-[module/wireless]
-type = internal/network
-interface = wlo1
-format-connected = <label-connected>
-;format-connected-underline = ${colors.underline}
-;format-disconnected = <label-disconnected>
-label-connected = %{T2}%{T-} %{T5}%local_ip%%{T-}
-label-disconnected = 
-
-[module/date]
-type = internal/date
-interval = 1
-date = %b %d
-; time = %H:%M:%S
-;label =  %date%   %time%
-;label = %{T3}%date% %time%%{T-}
-label = %{T5}%date%%{T-}
-; label-underline = ${colors.light-blue}
-
-[module/time]
-type = internal/date
-interval = 1
-time = %H:%M
-label =%{T5}%time%%{T-}
-label-underline = ${colors.underline}
 
 [module/volume]
 type = internal/alsa
@@ -274,13 +225,90 @@ label-muted = 
 
 [module/keyboard]
 type = internal/xkeyboard
-; List of indicators to ignore
+; list of indicators to ignore
 blacklist-0 = num lock
 blacklist-1 = scroll lock
 blacklist-2 = caps lock
 label-layout =  %{T5}%layout%%{T-}
 ;label-layout-font = 3
 ; label-underline = ${colors.deep-purple}
+
+
+[bar/down]
+monitor = LVDS1
+
+; size and location of the fking bar
+width = 80%
+height = 22
+offset-x = 140
+offset-y = 3
+wm-restack = i3
+override-redirect = true
+
+bottom = true
+fixed-center = true
+margin-bottom = 0
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+underline-size = 2
+line-color = ${colors.underline} 
+
+padding-left = 1.5
+padding-right = 1.5
+module-margin = 1.2
+
+font-0 = sf pro display:style=semibold:size=10;2
+font-1 = fontawesome:style=regular:size=10;2
+font-2 = weather icons:style=regular:size=10;2
+font-3 = font awesome 5 free,font awesome 5 free solid:style=solid:size=10;2
+font-4 = sf pro display:style=semibold:size=10;2
+font-5 = saucecodepro nerd font:style=regular:size=10;2
+; font-6 = powerlinesymbols:style=medium:size=10;2
+
+modules-left = spotify
+modules-center = wireless
+modules-right = date
+
+[module/date]
+type = internal/date
+interval = 1
+date = %b %d
+time = %H:%M:%S
+label =  %date%   %time%
+; label = %{T3}%date% %time%%{T-}
+; label = %{T5}%date%%{T-}
+; label-underline = ${colors.light-blue}
+
+[module/spotify]
+type = custom/script
+; label = %{f#01ab84}%output%%{f-}
+format = <label>
+; label = %output%
+format-prefix = "  "
+; format-background =
+; format-foreground = 
+format-prefix-foreground = ${colors.secondary}
+click-left = playerctl next
+click-right = playerctl play-pause
+exec = python ~/.config/polybar/scripts/spotify.py -t 30 -f '{artist}-{song}'
+interval = 1
+
+[module/wireless]
+type = internal/network
+interface = wlo1
+format-connected = <label-connected>
+;format-connected-underline = ${colors.underline}
+;format-disconnected = <label-disconnected>
+label-connected = %{T2}%{T-} %{T5}%local_ip%%{T-}
+label-disconnected = 
+click-left = exec urxvt -e nmtui
+
+[module/redshift]
+type = custom/script
+exec = ~/.config/polybar/scripts/redshift.sh
+interval = 5
 
 [settings]
 screenchange-reload = true
@@ -290,6 +318,6 @@ screenchange-reload = true
 ;compositing-border = over
 
 [global/wm]
-margin-top = 5
-margin-bottom = 5
+margin-top = 0
+margin-bottom = 0
 ; vim:ft=dosini
