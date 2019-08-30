@@ -1,5 +1,6 @@
 #!/bin/sh
 
+# sudo apt update &
 if ! updates=$(sudo apt list --upgradable 2> /dev/null | wc -l ); then
     updates=0
 fi

@@ -81,7 +81,7 @@ bindsym $mod+Shift+i resize grow height 5 px or 5 ppt
 bindsym $mod+o exec --no-startup-id todo
 bindsym $mod+Shift+o resize grow width 5 px or 5 ppt
 
-#bindsym $mod+p
+bindsym $mod+p exec --no-startup-id passmenu
 #bindsym $mod+Shift+p
 
 bindsym $mod+a gaps inner current plus 5
@@ -118,15 +118,15 @@ bindsym $mod+x  exec --no-startup-id ~/.config/i3/lock.sh
 # bindsym $mod+Shift+x 
 
 bindsym $mod+c layout toggle all
-bindsym $mod+Shift+c exec --no-startup-id $term -e calcurse
+bindsym $mod+Shift+c exec --no-startup-id showclip
 
 bindsym $mod+v exec --no-startup-id thunar 
 bindsym $mod+Shift+v exec --no-startup-id $term -e cava
 
-bindsym $mod+b exec --no-startup-id passmenu
-#bindsym $mod+Shift+b
+# bindsym $mod+b
+# bindsym $mod+Shift+b
 
-bindsym $mod+n exec --no-startup-id showclip
+# bindsym $mod+n exec --no-startup-id 
 #bindsym $mod+Shift+n
 
 bindsym $mod+m exec --no-startup-id $term -e cmatrix
@@ -213,6 +213,7 @@ for_window [window_role="gimp-toolbox"] floating disable; move right; resize gro
 #
 # Startup 
 exec --no-startup-id ~/.config/polybar/launch.sh
+exec --no-startup-id redshift
 exec_always --no-startup-id xrandr --output LVDS-1 --primary --mode 1366x768 --pos 0x0 --rotate normal --output DP-1 --off --output HDMI-1 --off --output VGA-1 --off
 exec_always --no-startup-id xset b 0
 exec_always --no-startup-id xset dpms 0

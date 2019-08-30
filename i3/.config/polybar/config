@@ -107,6 +107,7 @@ format-prefix = "  "
 format-background =
 format-foreground = 
 exec = ~/.config/polybar/scripts/updates-deb
+click-right = exec urxvt -e "sudo apt update"
 interval = 3600
 
 [module/todo]
@@ -172,6 +173,7 @@ label-separator-foreground = ${colors.foreground-alt}
 [module/clima]
 type = custom/script
 exec = ~/.config/polybar/scripts/weather
+click-left = exec  qutebrowser --target tab-bg https://darksky.net/forecast/-27.0998,-51.2477/ca12/en
 interval = 900
 
 [module/title]
@@ -269,7 +271,7 @@ font-5 = saucecodepro nerd font:style=regular:size=10;2
 
 modules-left = spotify
 modules-center = wireless
-modules-right = date
+modules-right = redshift date
 
 [module/date]
 type = internal/date

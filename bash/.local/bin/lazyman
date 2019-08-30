@@ -1,0 +1,3 @@
+#!/bin/bash
+# Launching lazyman
+java -jar ~/github/lazyman/LazyMan.jar

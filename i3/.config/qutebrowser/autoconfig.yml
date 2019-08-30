@@ -3,20 +3,5 @@
 
 config_version: 2
 settings:
-  downloads.position:
-    global: bottom
-  downloads.remove_finished:
-    global: -1
-  editor.command:
-    global:
-    - vim
-    - -f
-    - '{file}'
-    - -c
-    - normal {line}G{column0}l
-  hints.chars:
-    global: asdfghjklç
-  scrolling.smooth:
+  content.pdfjs:
     global: true
-  tabs.mousewheel_switching:
-    global: false

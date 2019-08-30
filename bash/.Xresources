@@ -27,14 +27,13 @@ URxvt.url-select.laucher: /usr/bin/qutebrowser
 URxvt.url-select.undeline: true
 Urxvt.keyboard-select.clipboard: true
 URxvt.saveLines: 12000
-/* URxvt*font: xft:SauceCodePro Nerd Font Mono:style=Light: size=11, PowerlineSymbols:style=Medium: size=9 */
-URxvt*font: xft:Inconsolata Nerd Font:style=Regular:size=11, PowerlineSymbols:style=Medium: size=9
-URxvt*boldfont: xft:Inconsolata Nerd Font:style=Bold: size=11, PowerlineSymbols:style=Medium: size=9
-URxvt*letterSpace: 0
+URxvt*font: xft:SauceCodePro Nerd Font Mono:style=Regular: size=11, PowerlineSymbols:style=Medium: size=9
+URxvt*fontBold: xft:SauceCodePro Nerd Font Mono:style=Bold: size=11, PowerlineSymbols:style=Medium: size=9
+URxvt*letterSpace: -1
 URxvt*scrollBar: false
 URxvt.iso14755: false
 URxvt.cursorBlink: 1
-URxvt.cursorUnderline: 1
+URxvt.cursorUnderline: 0
 URxvt.internalBorder: 0
 URxvt.externalBorder: 0
 !#################################

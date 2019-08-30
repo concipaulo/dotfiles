@@ -12,26 +12,27 @@
 " VimEnter * PlugInstall --sync | source $MYVIMRC 
 " endif 
 
-call plug#begin('~/.vim/plugged') 
-Plug 'tpope/vim-sensible'
-Plug 'junegunn/goyo.vim'
-Plug 'https://github.com/scrooloose/nerdtree.git'
-Plug 'https://github.com/vim-syntastic/syntastic.git'
-Plug 'tpope/vim-abolish'
-Plug 'vim-airline/vim-airline' 
-Plug 'vim-airline/vim-airline-themes' 
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-fugitive'
-Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-unimpaired'
-Plug 'dylanaraps/wal.vim'
-Plug 'lervag/vimtex'
-Plug 'SirVer/ultisnips'
-Plug 'ap/vim-css-color'
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'sheerun/vim-polyglot'
-call plug#end()
+"Plugins
+    call plug#begin('~/.vim/plugged') 
+    Plug 'tpope/vim-sensible'
+    Plug 'junegunn/goyo.vim'
+    Plug 'https://github.com/scrooloose/nerdtree.git'
+    Plug 'https://github.com/vim-syntastic/syntastic.git'
+    Plug 'tpope/vim-abolish'
+    Plug 'vim-airline/vim-airline' 
+    Plug 'vim-airline/vim-airline-themes' 
+    Plug 'tpope/vim-commentary'
+    Plug 'tpope/vim-fugitive'
+    Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
+    Plug 'tpope/vim-surround'
+    Plug 'tpope/vim-unimpaired'
+    Plug 'dylanaraps/wal.vim'
+    Plug 'lervag/vimtex'
+    Plug 'SirVer/ultisnips'
+    Plug 'ap/vim-css-color'
+    Plug 'ctrlpvim/ctrlp.vim'
+    Plug 'sheerun/vim-polyglot'
+    call plug#end()
 
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<tab>"
@@ -39,10 +40,13 @@ let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 "
 syntax on
+filetype on
+set mouse=a
+
 "Airline theme
 let g:airline_theme='wal'
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#fnamemod = ':t'
+" let g:airline#extensions#tabline#enabled = 1
+" let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline_powerline_fonts = 0
 let g:airline#extensions#ctrlp#enable = 1
 " let g:CtrlSpaceStatuslineFunction = "airline#extensions#ctrlspace#statusline()"
@@ -65,6 +69,7 @@ let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = '☰'
 let g:airline_symbols.maxlinenr = ''
+let g:airline_symbols.notexists = ''
 
 " Use fd for ctrlp.
 if executable('fd')
@@ -202,7 +207,7 @@ set t_vb=
 set tm=500
 
 " Add a bit extra margin to the left
-"set foldcolumn=1
+set foldcolumn=1
 
 "Add number lines 
 set number
@@ -401,7 +406,7 @@ nnoremap <leader>z :!zathura %:r.pdf &<CR><CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Spell checking
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Pressing \ss will toggle and untoggle spell checking
+" Pressing ,ss will toggle and untoggle spell checking
 map <leader>ss :setlocal spell!<cr>
 "
 " Shortcuts using <leader>
