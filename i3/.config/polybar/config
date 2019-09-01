@@ -33,10 +33,14 @@ blue-gray = #546e7a
 monitor = LVDS1
 
 ; size and location of the fking bar
-width = 80%
-height = 22
-offset-x = 140
-offset-y = 3
+; huge gaps
+; width = 80%
+; height = 22
+; offset-x = 140
+; offset-y = 3
+; no gaps
+width = 100%
+height = 25
 wm-restack = i3
 override-redirect = true
 
@@ -52,7 +56,7 @@ line-color = ${colors.underline}
 
 padding-left = 1.5
 padding-right = 1.5
-module-margin = 1.2
+module-margin = 1.4
 
 font-0 = sf pro display:style=semibold:size=10;2
 font-1 = fontawesome:style=regular:size=10;2
@@ -64,7 +68,7 @@ font-5 = saucecodepro nerd font:style=regular:size=10;2
 
 modules-left = i3
 modules-center = title
-modules-right = clima todo update keyboard wired volume powermenu
+modules-right = clima todo update keyboard wired volume redshift date
 
 ;tray-position = 
 ;tray-detached = false
@@ -203,27 +207,33 @@ label-disconnected =
 
 [module/volume]
 type = internal/alsa
-format-volume = <label-volume><bar-volume>
+; format-volume = <label-volume><bar-volume>
+format-volume = <ramp-volume>
 ; format-volume-underline = ${colors.alert}
 ; format-muted = ${self.format-volume}
 format-muted-foreground = ${xrdb:color8:#8888}
 
-bar-volume-width = 10
-bar-volume-indicator = %{T5}|%{T}
-bar-volume-fill = %{T5}•%{T}
-bar-volume-empty = ${self.bar-volume-fill}
-bar-volume-empty-foreground = ${self.format-muted-foreground}
+; bar-volume-width = 10
+; bar-volume-indicator = %{T5}|%{T}
+; bar-volume-fill = %{T5}•%{T}
+; bar-volume-empty = ${self.bar-volume-fill}
+; bar-volume-empty-foreground = ${self.format-muted-foreground}
 
-format-volume-font = 3
+format-volume-font = 2
 format-muted-font = ${self.format-volume-font}
 ; format-muted = <label-muted>
 
-label-volume = 
-label-muted = 
-; ramp-volume-0 = 
-; ramp-volume-1 =
+; label-volume = 墳 
+; label-muted = 
+label-muted = ﱝ
+ramp-volume-0 =奄 
+ramp-volume-1 =奔 
+ramp-volume-2 =墳 
 
-; click-left = alsamixer
+click-left = alsa
+
+ramp-headphones-0 = 
+ramp-headphones-1 = 
 
 [module/keyboard]
 type = internal/xkeyboard
@@ -277,7 +287,7 @@ modules-right = redshift date
 type = internal/date
 interval = 1
 date = %b %d
-time = %H:%M:%S
+time = %H:%M
 label =  %date%   %time%
 ; label = %{T3}%date% %time%%{T-}
 ; label = %{T5}%date%%{T-}
@@ -310,6 +320,7 @@ click-left = exec urxvt -e nmtui
 [module/redshift]
 type = custom/script
 exec = ~/.config/polybar/scripts/redshift.sh
+; click-left = exec notify-send "$(redshift -p 2>/dev/null | awk '/^Color/ {print $3}')"
 interval = 5
 
 [settings]

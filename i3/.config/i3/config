@@ -7,14 +7,16 @@ set $mod Mod4
 #config i3-gaps
 hide_edge_borders both
 for_window [class="^.*"] border pixel 2
-gaps inner 12
-gaps outer 25
+# set gap_top 
+gaps top 30
+gaps bottom 5
+gaps left 5
+gaps right 5
+gaps inner 10
 #
 font pango:SF Pro Display:style=Light 10
 #
 # Set colors from Xresources
-# Change 'color7' and 'color2' to whatever colors you want i3 to use 
-# from the generated scheme.
 # NOTE: The '#f0f0f0' in the lines below is the color i3 will use if
 # it fails to get colors from Xresources.
 set_from_resource $fg i3wm.color7 #f0f0f0
@@ -44,20 +46,18 @@ floating_modifier $mod
 
 # start a terminal
 bindsym $mod+Return exec --no-startup-id $term -e fish
-bindsym $mod+Shift+Return exec --no-startup-id $term
+bindsym $mod+Shift+Return exec --no-startup-id st -e fish
 bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
 bindsym $mod+Shift+Escape exec prompt "Shutting Down?" "sudo shutdown -h now"
 bindsym $mod+Escape exec prompt "Logout?" "i3-msg exit"
 bindsym $mod+Tab workspace back_and_forth
-# bindsym Mod1+space exec --no-startup-id via
 
 # kill focused window
 bindsym $mod+Shift+q kill 
 bindsym $mod+q kill
 
 bindsym $mod+w exec --no-startup-id qutebrowser --backend webengine
-# bindsym $mod+w exec --no-startup-id qutebrowser
 bindsym $mod+Shift+w exec --no-startup-id firefox-esr
 
 bindsym $mod+e exec --no-startup-id $term -e mutt
@@ -67,7 +67,7 @@ bindsym $mod+r exec --no-startup-id $term -e ranger
 bindsym $mod+Shift+r exec $term -e rtv --enable-media --no-flash
 
 bindsym $mod+t split toggle
-bindsym $mod+Shift+t gaps inner all set 15; gaps outer all set 15
+bindsym $mod+Shift+t gaps top current set 30; gaps bottom current set 5; gaps left current set 5; gaps right current set 5; gaps inner current set 10
 
 bindsym $mod+y exec --no-startup-id $term -e tmux; workspace $ws1
 bindsym $mod+Shift+y resize shrink width 5 px or 5 ppt
@@ -91,7 +91,7 @@ bindsym $mod+s scratchpad show
 bindsym $mod+Shift+s move scratchpad
 
 bindsym $mod+d exec --no-startup-id dmen
-bindsym $mod+Shift+d gaps inner all set 0; gaps outer all set 0
+bindsym $mod+Shift+d gaps top current set 25; gaps bottom current set 0; gaps left current set 0; gaps right current set 0; gaps inner current set 0
 
 bindsym $mod+f fullscreen toggle
 #bindsym $mod+Shift+f
@@ -117,7 +117,7 @@ bindsym $mod+Shift+z gaps outer current minus 5
 bindsym $mod+x  exec --no-startup-id ~/.config/i3/lock.sh 
 # bindsym $mod+Shift+x 
 
-bindsym $mod+c layout toggle all
+# bindsym $mod+c 
 bindsym $mod+Shift+c exec --no-startup-id showclip
 
 bindsym $mod+v exec --no-startup-id thunar 
@@ -157,16 +157,6 @@ bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
-# change container layout (stacked, tabbed, toggle split)
-#bindsym $mod+s layout stacking
-#bindsym $mod+w layout tabbed
-#bindsym $mod+e layout toggle split
-
-# focus the parent container
-#bindsym $mod+a focus parent
-
-# focus the child container
-#bindsym $mod+d focus child
 # Workspaces
 # switch to workspace
 set $ws1 "1:"
@@ -212,11 +202,11 @@ for_window [window_role="gimp-dock"] floating disable; move left; resize  shrink
 for_window [window_role="gimp-toolbox"] floating disable; move right; resize grow width 30 px or 30ppt
 #
 # Startup 
-exec --no-startup-id ~/.config/polybar/launch.sh
+exec --no-startup-id polybar-launch
 exec --no-startup-id redshift
 exec_always --no-startup-id xrandr --output LVDS-1 --primary --mode 1366x768 --pos 0x0 --rotate normal --output DP-1 --off --output HDMI-1 --off --output VGA-1 --off
 exec_always --no-startup-id xset b 0
-exec_always --no-startup-id xset dpms 0
+exec_always --no-startup-id xset -dpms
 exec_always --no-startup-id compton --config ~/.config/compton2.conf -b
 exec --no-startup-id amixer -q sset Master 0%
 # exec_always --no-startup-id ~/.config/i3/blurme_byme
@@ -226,6 +216,6 @@ exec --no-startup-id xinput --set-prop "SynPS/2 Synaptics TouchPad" "libinput Ta
 exec --no-startup-id xinput --set-prop "SynPS/2 Synaptics TouchPad" "libinput Scroll Method Enabled" 0 1 0
 exec --no-startup-id xinput --set-prop "SynPS/2 Synaptics TouchPad" "libinput Natural Scrolling Enabled" 1
 exec_always --no-startup-id setxkbmap -option ctrl:nocaps
-exec --no-startup-id ~/.config/dunst/reload_dunst.sh
+exec --no-startup-id reload-dunst
 exec --no-startup-id wal -R
-# exec --no-startup-id conky > /dev/null 2>&1 &
+exec --no-startup-id conky > /dev/null 2>&1 &

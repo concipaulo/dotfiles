@@ -12,13 +12,13 @@ Xft.rgba:                   rgb
 Xft.hinting:                true
 Xft.hintstyle:              hintslight
 !#################################
-! st configs
-*.alpha:0.98
+! st config
+*.alpha:0.85
 ! URxvt configs
 Urxvt.title: URxvt
 URxvt.scrollstyle: plain
 URxvt.depth: 32
-URxvt.perl-ext-common: default,keyboard-select,url-select,resize-font
+URxvt.perl-ext-common: default,keyboard-select,url-select,resize-font,vim-scrollback
 URxvt.jumpScroll: true
 URxvt.loginShell: true
 URxvt.keysym.M-Escape: perl:keyboard-select:activate
@@ -36,6 +36,17 @@ URxvt.cursorBlink: 1
 URxvt.cursorUnderline: 0
 URxvt.internalBorder: 0
 URxvt.externalBorder: 0
+/* ; configure alt-s as the keybinding to enter vim scrollback mode. */
+urxvt.vim-scrollback: M-f
+/* ; configure alt-p as the keybinding to paste mode. */
+urxvt.vim-scrollback-paste: M-p
+/* ; configure the background and foreground colors used for the status bar while */
+/* ; in scrollback mode. */
+urxvt.vim-scrollback-bg: 16
+urxvt.vim-scrollback-fg: 10
+/* ; configure vim-scrollback specific matchers */
+urxvt.vim-scrollback.pattern.1: \\B(/\\S+?):(\\d+)(?=:|$)
+urxvt.vim-scrollback.launcher.1: vim +$2 $1
 !#################################
 ! ROFI Color theme
 !#################################

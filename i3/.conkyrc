@@ -23,7 +23,7 @@ draw_graph_borders no
 draw_outline no
 draw_shades no
 gap_x 5
-gap_y 40
+gap_y 120
 max_user_text 10000
 maximum_width 180
 minimum_size 850
@@ -35,9 +35,8 @@ own_window_colour 000000	# Black
 own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
 own_window_transparent yes
 own_window_type override
-own_window_class conky
-pad_percents 2			# to co nizej, miejsc po przecinku
-short_units yes			# krotka wersja podawania wielkosci dyskow np. 612.21M/3.80G
+pad_percents 2
+short_units yes
 stippled_borders 3
 text_buffer_size 8000
 total_run_times 0
@@ -52,13 +51,13 @@ TEXT
 ${color2}${goto 10}${font DejaVu Sans Mono:size=44}${time %H}${font DejaVu Sans Mono:size=20}${voffset -25}'${time %M}${font DejaVu Sans Mono:size=8}${voffset -12}${time %S}
 ${color2}${goto 85}${voffset 10}${font :size=8}${time %A}
 ${color2}${goto 85}${voffset 1}${font :size=8}${time %d %B %Y}
-#${color}${font RsbillsDng:size=14}${font}${font DejaVu Sans Mono:size=8}${execpi 3600 DJS=`date +%_d`; cal -m8 | sed '1d' | sed '/./!d' | sed 's/$/                     /' | fold -w 21 | sed -n '/^.\{21\}/p' | sed 's/^/${alignc} /' | sed /" $DJS "/s/" $DJS "/" "'${color2}'"$DJS"'${color}'" "/}${font}
+# ${color}${font RsbillsDng:size=14}${font}${font DejaVu Sans Mono:size=8}${execpi 3600 DJS=`date +%_d`; cal -m8 | sed '1d' | sed '/./!d' | sed 's/$/                     /' | fold -w 21 | sed -n '/^.\{21\}/p' | sed 's/^/${alignc} /' | sed /" $DJS "/s/" $DJS "/" "'${color2}'"$DJS"'${color}'" "/}${font}
 
 
 ${voffset -20}${color2}${font led:size=10}SYSTEM ${font}$hr
 ${color}${sysname} Kernel: ${alignr}$kernel
 ${color}Architecture: ${alignr}$machine
-${color}User: ${alignr}$nodename
+${color}Host: ${alignr}$nodename
 ${color}Uptime:$color ${alignr}$uptime
 
 ${voffset -10}${color2}${font led:size=10}CPU ${font}$hr

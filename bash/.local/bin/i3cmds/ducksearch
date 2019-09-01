@@ -3,7 +3,7 @@
 # Without input, will open DuckDuckGo.com.
 # URLs will be directly handed to the browser.
 # Anything else, it search it.
-browser=${BROWSER:-firefox}
+browser=${BROWSER:-qutebrowser}
 
 pgrep -x dmenu && exit
 
