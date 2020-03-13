@@ -131,6 +131,8 @@ enable-click = true
 enable-scroll = false
 wrapping-scroll = false
 reverse-scroll = false
+ipc-wait-for-socket=true
+ipc-wait-timeout-ms=2000
 
 fuzzy-match = true
 
@@ -321,7 +323,7 @@ click-left = exec urxvt -e nmtui
 type = custom/script
 exec = ~/.config/polybar/scripts/redshift.sh
 ; click-left = exec notify-send "$(redshift -p 2>/dev/null | awk '/^Color/ {print $3}')"
-interval = 5
+interval = 1
 
 [settings]
 screenchange-reload = true

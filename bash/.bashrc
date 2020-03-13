@@ -127,7 +127,7 @@ export PATH=$PATH:$TECHOME/bin
 
 export VISUAL=vim
 export EDITOR=$VISUAL
-export BROWSER=/usr/bin/qutebrowser
+export BROWSER=/usr/bin/firefox-esr
 export TERMINAL=urxvtd
 
 #pywal config

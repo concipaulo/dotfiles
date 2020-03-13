@@ -1,0 +1,229 @@
+#!/bin/bash
+#
+# Copyright (C) 2011-2019 Aratelia Limited - Juan A. Rubio
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+#
+# MPRIS2-based remote control for tizonia
+#
+
+#############
+# Constants #
+#############
+readonly tizbusname=$(dbus-send --session           \
+                                --dest=org.freedesktop.DBus \
+                                --type=method_call          \
+                                --print-reply               \
+                                /org/freedesktop/DBus       \
+                                org.freedesktop.DBus.ListNames \
+                          | grep tizonia \
+                          | awk -F'"' '{ print $2 }')
+readonly dbuscmd="dbus-send --print-reply --dest=$tizbusname /com/aratelia/tiz/tizonia"
+readonly mediaifc='org.mpris.MediaPlayer2'
+readonly playerifc='org.mpris.MediaPlayer2.Player'
+readonly propgetifc='org.freedesktop.DBus.Properties.Get'
+readonly propsetifc='org.freedesktop.DBus.Properties.Set'
+
+readonly canquitcmd='$dbuscmd $propgetifc string:"$mediaifc" string:"CanQuit"'
+readonly canraisecmd='$dbuscmd $propgetifc string:"$mediaifc" string:"CanRaise"'
+readonly hastracklistcmd='$dbuscmd $propgetifc string:"$mediaifc" string:"HasTrackList"'
+readonly identitycmd='$dbuscmd $propgetifc string:"$mediaifc" string:"Identity"'
+readonly urischemescmd='$dbuscmd $propgetifc string:"$mediaifc" string:"SupportedUriSchemes"'
+readonly mimetypescmd='$dbuscmd $propgetifc string:"$mediaifc" string:"SupportedMimeTypes"'
+
+readonly playstatuscmd='$dbuscmd $propgetifc string:"$playerifc" string:"PlaybackStatus"'
+readonly loopstatusgetcmd='$dbuscmd $propgetifc string:"$playerifc" string:"LoopStatus"'
+readonly ratecmd='$dbuscmd $propgetifc string:"$playerifc" string:"Rate"'
+readonly shufflecmd='$dbuscmd $propgetifc string:"$playerifc" string:"Shuffle"'
+readonly metadatacmd='$dbuscmd $propgetifc string:"$playerifc" string:"Metadata"'
+readonly volumegetcmd='$dbuscmd $propgetifc string:"$playerifc" string:"Volume"'
+readonly volumesetcmd='$dbuscmd $propsetifc string:"$playerifc" string:"Volume" variant:double:$2 &> /dev/null'
+
+readonly playcmd='$dbuscmd $playerifc.Play   &> /dev/null'
+readonly pausecmd="$dbuscmd $playerifc.Pause &> /dev/null"
+readonly stopcmd='$dbuscmd $playerifc.Stop   &> /dev/null'
+readonly nextcmd='$dbuscmd $playerifc.Next   &> /dev/null'
+readonly prevcmd='$dbuscmd $playerifc.Previous   &> /dev/null'
+readonly quitcmd='$dbuscmd $mediaifc.Quit   &> /dev/null'
+
+readonly red=1
+readonly green=2
+readonly yellow=3
+readonly blue=4
+readonly magenta=5
+readonly cyan=6
+readonly white=7
+
+function pretty_print {
+    echo "$(tput setaf $1)$2$(tput sgr 0)" 1>&2
+}
+
+function usage {
+    pretty_print "$blue" "tizonia-remote @PACKAGE_VERSION@. Copyright (C) 2019 Juan A. Rubio"
+    pretty_print "$blue" "This software is part of the Tizonia project <http://tizonia.org>"
+
+    echo
+    pretty_print "$green" "GNU Lesser GPL version 3 <http://gnu.org/licenses/lgpl.html>"
+    pretty_print "$green" "This is free software: you are free to change and redistribute it."
+    pretty_print "$green" "There is NO WARRANTY, to the extent permitted by law."
+
+    echo
+
+tput setaf "$yellow"
+cat <<EOF
+MPRIS2 remote control for tizonia.
+http://specifications.freedesktop.org/mpris-spec/latest/
+Usage: $0 [command]
+    Misc. commands
+    -----------------------------------------
+    help                 this help text.
+    kill                 sends the TERM signal.
+    org.mpris.MediaPlayer2 interface
+    --------------------------------
+    ::Methods::
+    quit                 causes the application to stop running.
+    ::Properties::
+    canquit              whether the media player quit.
+    canraise             whether the media player can raise its UI.
+    hastracklist         whether the org.mpris.MediaPlayer2.TrackList interface
+                         is implemented.
+    identity             returns the name that identifies the media player.
+    urischemes           returns the URI schemes supported.
+    mimetypes            returns the mime types supported.
+    org.mpris.MediaPlayer2.Player interface
+    ---------------------------------------
+    ::Methods::
+    play                 starts or resumes playback.
+    stop                 stops playback.
+    pause                pauses playback.
+    next                 skips to the next track in the tracklist.
+    prev                 skips to the previous track in the tracklist.
+    seek                 (NOT IMPLEMENTED) seeks forward in the current
+                         track by the specified number of microseconds.
+    ::Properties::
+    playstatus           the current playback status ("Playing", "Paused" or "Stopped").
+    loopstatus           the current loop / repeat status ("None", "Track", "Playlist")
+                         (Read/Write).
+    rate                 the current playback rate (Read/Write).
+    shuffle              the current shuffled playback status (true or false).
+    metadata             the metadata of the current track (Read/Write).
+    volume               the volume level (Read/Write).
+    org.mpris.MediaPlayer2.TrackList interface
+    ------------------------------------------
+    TODO
+    org.mpris.MediaPlayer2.Playlists interface
+    ------------------------------------------
+    TODO
+EOF
+tput sgr 0
+}
+
+function start_dbus {
+    ## test for an existing bus daemon, just to be safe
+    if test -z "$DBUS_SESSION_BUS_ADDRESS" ; then
+        ## if not found, launch a new one
+        export `dbus-launch --exit-with-session`
+        echo "D-Bus per-session daemon address is: $DBUS_SESSION_BUS_ADDRESS"
+        echo "D-Bus per-session daemon PID is    : $DBUS_SESSION_BUS_PID"
+    fi
+}
+
+function main {
+
+    if [[ ($# -gt 2) || ($# -eq 0) ]]
+    then
+        usage
+        exit 1
+    fi
+
+    start_dbus
+
+    case "$1" in
+        canquit)
+            eval "$canquitcmd"  | sed 1d | cut -c26-
+            ;;
+        canraise)
+            eval "$canraisecmd"  | sed 1d | cut -c26-
+            ;;
+        hastracklist)
+            eval "$hastracklistcmd" | sed 1d | cut -c26-
+            ;;
+        identity)
+            eval "$identitycmd" | sed 1d | cut -c25-
+            ;;
+        urischemes)
+            eval "$urischemescmd" | sed 1,2d | sed '$ d' | cut -c17-
+            ;;
+        mimetypes)
+            eval "$mimetypescmd" | sed 1,2d | sed '$ d' | cut -c17-
+            ;;
+        playstatus)
+            eval "$playstatuscmd" | sed 1d | cut -c25-
+            ;;
+        loopstatus)
+            eval "$loopstatusgetcmd" | sed 1d | cut -c25-
+            ;;
+        rate)
+            eval "$ratecmd" | sed 1d | cut -c25-
+            ;;
+        shuffle)
+            eval "$shufflecmd" | sed 1d | cut -c26-
+            ;;
+        metadata)
+            eval "$metadatacmd" #| sed 1d | cut -c26-
+            ;;
+        volume)
+            if [[ $# -eq 2 ]]
+            then
+                eval "$volumesetcmd"
+            else
+                eval "$volumegetcmd" | sed 1d | cut -c25-
+            fi
+            ;;
+        play)
+            eval "$playcmd"
+            ;;
+        pause)
+            eval "$pausecmd"
+            ;;
+        stop)
+            eval "$stopcmd"
+            ;;
+        prev)
+            eval "$prevcmd"
+            ;;
+        next)
+            eval "$nextcmd"
+            ;;
+        quit)
+            eval "$quitcmd"
+            ;;
+        kill) echo  "Sending SIGTERM signal"
+            killall -TERM tizonia
+            ;;
+        help)
+            usage
+            exit 1
+            ;;
+        *) echo; pretty_print "$red" "Unknown command"
+            usage
+            exit 1
+            ;;
+    esac
+
+    exit $$
+}
+
+main "$@"

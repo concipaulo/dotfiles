@@ -28,10 +28,11 @@
     Plug 'tpope/vim-unimpaired'
     Plug 'dylanaraps/wal.vim'
     Plug 'lervag/vimtex'
-    Plug 'SirVer/ultisnips'
     Plug 'ap/vim-css-color'
     Plug 'ctrlpvim/ctrlp.vim'
     Plug 'sheerun/vim-polyglot'
+    Plug 'dpelle/vim-LanguageTool'
+    Plug 'jalvesaq/Nvim-R'
     call plug#end()
 
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
@@ -77,12 +78,13 @@ if executable('fd')
     let g:ctrlp_use_caching = 0
 endif
 
+let g:polyglot_disabled = ['latex']
 " Vimtex setting
 " " Note; <leader>ll builds and <leader>le shows compile errors
 " " Note; install xdotool package for live previews in zathura
 " let g:vimtex_view_method='general'
-"let g:vimtex_view_method='zathura'
-"let g:airline#extensions#vimtex#enable=1
+let g:vimtex_view_method='zathura'
+let g:airline#extensions#vimtex#enable=1
 
 
 " " Nerdtree settings
@@ -219,9 +221,6 @@ set relativenumber
 " syntax enable
 set t_Co=256
 "
-" let g:seoul256_background=237
-" let g:seoul256_srgb = 1
-" colorscheme seoul256
 colorscheme wal
 "
 set background=dark
@@ -299,6 +298,7 @@ map <C-l> <C-W>l
 "
 " wipe the current buffer
 map <leader>bw :bw<cr>
+map <leader>bd :bd<cr>
 "
 " Close all the buffers
 map <leader>ba :bufdo bd<cr>
@@ -474,23 +474,23 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_wq = 0
 
 
-"remove arrowkeys
-nnoremap <Up> :echo "No up for you!" <CR>
-nnoremap <Down> :echo "No down for you!" <CR>
-nnoremap <Left> :echo "No left for you!" <CR>
-nnoremap <Right> :echo "No right for you!" <CR>
+" remove arrowkeys
+" nnoremap <Up> :echo "No up for you!" <CR>
+" nnoremap <Down> :echo "No down for you!" <CR>
+" nnoremap <Left> :echo "No left for you!" <CR>
+" nnoremap <Right> :echo "No right for you!" <CR>
 
-vnoremap <Up> :<C-u>echo "No up for you!" <CR>
-vnoremap <Down> :<C-u>echo "No down for you!" <CR>
-vnoremap <Left> :<C-u>echo "No left for you!" <CR>
-vnoremap <Right> :<C-u>echo "No right for you!" <CR>
+" vnoremap <Up> :<C-u>echo "No up for you!" <CR>
+" vnoremap <Down> :<C-u>echo "No down for you!" <CR>
+" vnoremap <Left> :<C-u>echo "No left for you!" <CR>
+" vnoremap <Right> :<C-u>echo "No right for you!" <CR>
 
-inoremap <Up> <C-o>:echo "No up for you!" <CR>
-inoremap <Down> <C-o>:echo "No down for you!" <CR>
-inoremap <Left> <C-o>:echo "No left for you!" <CR>
-inoremap <Right> <C-o>:echo "No right for you!" <CR>
+" inoremap <Up> <C-o>:echo "No up for you!" <CR>
+" inoremap <Down> <C-o>:echo "No down for you!" <CR>
+" inoremap <Left> <C-o>:echo "No left for you!" <CR>
+" inoremap <Right> <C-o>:echo "No right for you!" <CR>
 
-"laggy tex file ?
+" laggy tex file ?
 " autocmd FileType tex :NoMatchParen
 " au FileType tex setlocal nocursorline
 "

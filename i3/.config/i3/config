@@ -5,9 +5,13 @@
 set $mod Mod4
 #
 #config i3-gaps
-hide_edge_borders both
-for_window [class="^.*"] border pixel 2
-# set gap_top 
+# hide_edge_borders both
+# for_window [class="^.*"] border pixel 2
+# for_window [class="^.*"] border normal
+default_border pixel 2
+default_floating_border normal
+for_window [class=".*"] title_format "<span font='SF Mono SemiBold 10'> › %title</span>"
+
 gaps top 30
 gaps bottom 5
 gaps left 5
@@ -49,27 +53,27 @@ bindsym $mod+Return exec --no-startup-id $term -e fish
 bindsym $mod+Shift+Return exec --no-startup-id st -e fish
 bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
-bindsym $mod+Shift+Escape exec prompt "Shutting Down?" "sudo shutdown -h now"
-bindsym $mod+Escape exec prompt "Logout?" "i3-msg exit"
+bindsym $mod+Shift+Escape exec --no-startup-id prompt "Shutting Down?" "sudo shutdown -h now"
+bindsym $mod+Escape exec --no-startup-id prompt "Reboot?" "sudo shutdown -r now"
 bindsym $mod+Tab workspace back_and_forth
 
 # kill focused window
-bindsym $mod+Shift+q kill 
+bindsym $mod+Shift+q kill
 bindsym $mod+q kill
 
-bindsym $mod+w exec --no-startup-id qutebrowser --backend webengine
-bindsym $mod+Shift+w exec --no-startup-id firefox-esr
+bindsym $mod+w exec --no-startup-id firefox-esr
+bindsym $mod+Shift+w exec --no-startup-id qutebrowser --backend webengine
 
-bindsym $mod+e exec --no-startup-id $term -e mutt
+bindsym $mod+e exec --no-startup-id mousepad
 bindsym $mod+Shift+e exec --no-startup-id $term -e sudo ranger
 
-bindsym $mod+r exec --no-startup-id $term -e ranger
-bindsym $mod+Shift+r exec $term -e rtv --enable-media --no-flash
+bindsym $mod+r exec --no-startup-id rstudio; workspace $ws3
+bindsym $mod+Shift+r exec --no-startup-id $term -e ranger
 
 bindsym $mod+t split toggle
 bindsym $mod+Shift+t gaps top current set 30; gaps bottom current set 5; gaps left current set 5; gaps right current set 5; gaps inner current set 10
 
-bindsym $mod+y exec --no-startup-id $term -e tmux; workspace $ws1
+bindsym $mod+y exec --no-startup-id feh --randomize --bg-fill ~/Pictures/Wallpapers/*
 bindsym $mod+Shift+y resize shrink width 5 px or 5 ppt
 
 bindsym $mod+u restart
@@ -97,7 +101,7 @@ bindsym $mod+f fullscreen toggle
 #bindsym $mod+Shift+f
 
 bindsym $mod+g exec --no-startup-id gimp; workspace $ws5
-bindsym $mod+Shift+g exec --no-startup-id tecplot; workspace $ws6
+# bindsym $mod+Shift+g 
 
 bindsym $mod+h focus left
 bindsym $mod+Shift+h move left 30
@@ -115,9 +119,9 @@ bindsym $mod+z gaps outer current plus 5
 bindsym $mod+Shift+z gaps outer current minus 5
 
 bindsym $mod+x  exec --no-startup-id ~/.config/i3/lock.sh 
-# bindsym $mod+Shift+x 
+bindsym $mod+Shift+x --release exec --no-startup-id xkill
 
-# bindsym $mod+c 
+bindsym $mod+c sticky toggle
 bindsym $mod+Shift+c exec --no-startup-id showclip
 
 bindsym $mod+v exec --no-startup-id thunar 
@@ -126,7 +130,7 @@ bindsym $mod+Shift+v exec --no-startup-id $term -e cava
 # bindsym $mod+b
 # bindsym $mod+Shift+b
 
-# bindsym $mod+n exec --no-startup-id 
+bindsym $mod+n exec --no-startup-id snap run code
 #bindsym $mod+Shift+n
 
 bindsym $mod+m exec --no-startup-id $term -e cmatrix
@@ -139,6 +143,9 @@ bindsym $mod+F5 exec sudo systemctl restart NetworkManager
 bindsym $mod+F9 exec --no-startup-id dmenumount
 bindsym $mod+F10 exec --no-startup-id dmenuumount
 
+bindsym --whole-window button2 kill
+bindsym --whole-window $mod+button3 floating toggle
+
 # bindsym XF86Search
 bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10
 bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 10
@@ -150,6 +157,8 @@ bindsym XF86AudioNext exec --no-startup-id playerctl next
 bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
 bindsym Print exec --no-startup-id scrot -q 100 
 bindsym XF86Display exec --no-startup-id displayselect
+bindsym XF86Calculator exec --no-startup-id $term -e bc
+bindsym XF86Tools exec --no-startup-id spotify; workspace $ws10
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
@@ -193,29 +202,31 @@ bindsym $mod+Shift+8 move container to workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
 
-#for_window [title="ranger"] move workspace $ws1
 for_window [class="Firefox-esr"] move workspace $ws2
 for_window [class="qutebrowser"] move workspace $ws2
 for_window [class="Spotify"] move workspace $ws10
+for_window [class="Mousepad"] "floating enable, resize set 1000 400, i3-msg move to position center"
 for_window [title="GIMP Startup"] move workspace $ws5
 for_window [window_role="gimp-dock"] floating disable; move left; resize  shrink width 50 px or 50ppt
 for_window [window_role="gimp-toolbox"] floating disable; move right; resize grow width 30 px or 30ppt
+for_window [title="bc"] floating enable
+for_window [title="Plot Zoom"] floating enable
 #
 # Startup 
-exec --no-startup-id polybar-launch
+exec --no-startup-id polybar-launch > /dev/null 2>&1 &
 exec --no-startup-id redshift
 exec_always --no-startup-id xrandr --output LVDS-1 --primary --mode 1366x768 --pos 0x0 --rotate normal --output DP-1 --off --output HDMI-1 --off --output VGA-1 --off
 exec_always --no-startup-id xset b 0
 exec_always --no-startup-id xset -dpms
-exec_always --no-startup-id compton --config ~/.config/compton2.conf -b
+# exec_always --no-startup-id compton --config ~/.config/compton.conf -b
 exec --no-startup-id amixer -q sset Master 0%
 # exec_always --no-startup-id ~/.config/i3/blurme_byme
 exec --no-startup-id nm-applet
-# exec --no-startup-id feh --bg-scale ~/.config/i3/wall.png
 exec --no-startup-id xinput --set-prop "SynPS/2 Synaptics TouchPad" "libinput Tapping Enabled" 1
 exec --no-startup-id xinput --set-prop "SynPS/2 Synaptics TouchPad" "libinput Scroll Method Enabled" 0 1 0
 exec --no-startup-id xinput --set-prop "SynPS/2 Synaptics TouchPad" "libinput Natural Scrolling Enabled" 1
-exec_always --no-startup-id setxkbmap -option ctrl:nocaps
+# exec_always --no-startup-id setxkbmap -option ctrl:nocaps
 exec --no-startup-id reload-dunst
 exec --no-startup-id wal -R
+# exec --no-startup-id feh --bg-scale ~/.config/i3/wall.png
 exec --no-startup-id conky > /dev/null 2>&1 &
