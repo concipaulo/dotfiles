@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+DATASET=~/.times
+TIME=$(date)
+
+input1=$(printf '%s\n' "eng" "jpn" "art" | dmenu -p "Task" "$@")
+
+if [ -z "${input1}" ]; then
+    notify-send "No Task"
+    exit 1
+fi
+
+input2=$(printf '%s\n' "start" "end" | dmenu -p "Status" "$@")
+
+
+if [ -z "${input2}" ]; then
+    notify-send "No Status"
+    exit 1
+fi
+
+echo "$input1, $input2, $TIME" >> $DATASET
+notify-send "New entry added, $input1 $input2"

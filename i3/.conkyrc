@@ -14,7 +14,7 @@ color7 8888CC			#  (COOL)
 color8 9d9c61			# zolto-szary
 color9 525276			# niebiesko-szary
 cpu_avg_samples 2
-default_color 4d2e00 #ff5050 #FF4500 #8A2BE2 #525276 #e1e1e1  e1e1e1 Default color (text color)
+default_color 000000 #4d2e00 #ff5050 #FF4500 #8A2BE2 #525276 #e1e1e1  e1e1e1 Default color (text color)
 default_outline_color 000000 	# Black
 default_shade_color 000000	# Black
 double_buffer yes
@@ -22,7 +22,7 @@ draw_borders no
 draw_graph_borders no
 draw_outline no
 draw_shades no
-gap_x 15
+gap_x 20
 gap_y 120
 max_user_text 10000
 maximum_width 185
@@ -57,6 +57,7 @@ ${color2}${goto 85}${voffset 1}${font :size=8}${time %d %b %Y}
 ${voffset -20}${color2}${font led:size=10}SYSTEM ${font}$hr
 ${color}${sysname} Kernel: ${alignr}$kernel
 ${color}Architecture: ${alignr}$machine
+${color}Codename: ${alignr}${exec lsb_release -c | awk '{print $2; }'}
 ${color}Host: ${alignr}$nodename
 ${color}Uptime:$color ${alignr}$uptime
 

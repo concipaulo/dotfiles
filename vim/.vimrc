@@ -209,7 +209,7 @@ set t_vb=
 set tm=500
 
 " Add a bit extra margin to the left
-set foldcolumn=1
+set foldcolumn=0
 
 "Add number lines 
 set number
@@ -221,7 +221,7 @@ set relativenumber
 " syntax enable
 set t_Co=256
 "
-colorscheme wal
+" colorscheme wal
 "
 set background=dark
 "

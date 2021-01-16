@@ -7,7 +7,7 @@
 [global]
 monitor = 0
 follow = mouse
-geometry = "300x60-20+48"
+geometry = "300x60-15+40"
 indicate_hidden = yes
 shrink = no
 separator_height = 0
@@ -15,7 +15,7 @@ padding = 32
 horizontal_padding = 45
 frame_width = 2
 sort = no
-idle_threshold = 120
+idle_threshold = 0
 font = rissole 11
 line_height = 8
 markup = full
@@ -35,6 +35,13 @@ always_run_script = true
 title = Dunst
 class = Dunst
 
+[fullscreen_delay_everything]
+fullscreen = delay
+
+# [fullscreen_show_critical]
+# msg_urgency = critical
+# fullscreen = show
+
 [shortcuts]
 close = ctrl+space
 close_all = ctrl+shift+space
@@ -45,9 +52,9 @@ context = ctrl+shift+period
 timeout = 6
 
 [urgency_normal]
-timeout = 8
+timeout = 10
 
 [urgency_critical]
-timeout = 10
+timeout = 14
 #
 # vim: ft=cfg

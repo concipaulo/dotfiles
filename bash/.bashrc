@@ -129,6 +129,9 @@ export VISUAL=vim
 export EDITOR=$VISUAL
 export BROWSER=/usr/bin/firefox-esr
 export TERMINAL=urxvtd
+# export GTK_IM_MODULE=ibus
+# export XMODIFIERS=@im=ibus
+# export QT_IM_MODULE=ibus
 
 #pywal config
  (cat ~/.cache/wal/sequences &)

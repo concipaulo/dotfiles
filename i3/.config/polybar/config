@@ -68,11 +68,57 @@ font-5 = saucecodepro nerd font:style=regular:size=10;2
 
 modules-left = i3
 modules-center = title
+modules-right = todo update keyboard wired volume redshift date
+
+;tray-position = 
+;tray-detached = false
+;tray-padding = 0
+
+[bar/test]
+monitor = eDP1
+
+; size and location of the fking bar
+; huge gaps
+; width = 80%
+; height = 22
+; offset-x = 140
+; offset-y = 3
+; no gaps
+width = 100%
+height = 25
+wm-restack = i3
+override-redirect = true
+
+bottom = false
+fixed-center = true 
+margin-bottom = 0
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+underline-size = 2
+line-color = ${colors.underline} 
+
+padding-left = 1.5
+padding-right = 1.5
+module-margin = 1.4
+
+font-0 = sf pro display:style=semibold:size=10;2
+font-1 = fontawesome:style=regular:size=10;2
+font-2 = weather icons:style=regular:size=10;2
+font-3 = font awesome 5 free,font awesome 5 free solid:style=solid:size=10;2
+font-4 = sf pro display:style=semibold:size=10;2
+font-5 = saucecodepro nerd font:style=regular:size=10;2
+; font-6 = powerlinesymbols:style=medium:size=10;2
+
+modules-left = i3
+modules-center = title
 modules-right = clima todo update keyboard wired volume redshift date
 
 ;tray-position = 
 ;tray-detached = false
 ;tray-padding = 0
+
 
 [module/powermenu]
 type = custom/menu
@@ -176,11 +222,11 @@ label-separator-padding = 0
 ; label-separator-foreground = #ffb52a
 label-separator-foreground = ${colors.foreground-alt}
 ;
-[module/clima]
-type = custom/script
-exec = ~/.config/polybar/scripts/weather
-click-left = exec  qutebrowser --target tab-bg https://darksky.net/forecast/-27.0998,-51.2477/ca12/en
-interval = 900
+; [module/clima]
+; type = custom/script
+; exec = ~/.config/polybar/scripts/weather
+; click-left = exec  qutebrowser --target tab-bg https://darksky.net/forecast/-27.0998,-51.2477/ca12/en
+; interval = 900
 
 [module/title]
 type = internal/xwindow
@@ -288,7 +334,7 @@ modules-right = redshift date
 [module/date]
 type = internal/date
 interval = 1
-date = %b %d
+date = %b %d, %A
 time = %H:%M
 label =  %date%   %time%
 ; label = %{T3}%date% %time%%{T-}

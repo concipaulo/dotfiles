@@ -8,15 +8,15 @@ set $mod Mod4
 # hide_edge_borders both
 # for_window [class="^.*"] border pixel 2
 # for_window [class="^.*"] border normal
-default_border pixel 2
+default_border pixel 0
 default_floating_border normal
 for_window [class=".*"] title_format "<span font='SF Mono SemiBold 10'> › %title</span>"
 
-gaps top 30
-gaps bottom 5
-gaps left 5
-gaps right 5
-gaps inner 10
+ gaps top 30
+ gaps bottom 5
+ gaps left 5
+ gaps right 5
+ gaps inner 10
 #
 font pango:SF Pro Display:style=Light 10
 #
@@ -38,8 +38,8 @@ client.placeholder      $bd     $bg     $fg  $in       $in
 client.background       $bg
 #
 #configuring
-set $term urxvt
-set $browser qutebrowser
+set $term st
+set $browser firefox-esr
 #
 # Keybindings
 # Use Mouse+$mod to drag floating windows to their wanted position
@@ -50,7 +50,7 @@ floating_modifier $mod
 
 # start a terminal
 bindsym $mod+Return exec --no-startup-id $term -e fish
-bindsym $mod+Shift+Return exec --no-startup-id st -e fish
+bindsym $mod+Shift+Return exec --no-startup-id urxvt -e fish
 bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
 bindsym $mod+Shift+Escape exec --no-startup-id prompt "Shutting Down?" "sudo shutdown -h now"
@@ -97,11 +97,11 @@ bindsym $mod+Shift+s move scratchpad
 bindsym $mod+d exec --no-startup-id dmen
 bindsym $mod+Shift+d gaps top current set 25; gaps bottom current set 0; gaps left current set 0; gaps right current set 0; gaps inner current set 0
 
-bindsym $mod+f fullscreen toggle
-#bindsym $mod+Shift+f
+bindsym $mod+f exec --no-startup-id krita
+bindsym $mod+Shitf+f exec --no-startup-id foliate
 
-bindsym $mod+g exec --no-startup-id gimp; workspace $ws5
-# bindsym $mod+Shift+g 
+bindsym $mod+g exec --no-startup-id sabaki
+bindsym $mod+Shift+g exec --no-startup-id kigo
 
 bindsym $mod+h focus left
 bindsym $mod+Shift+h move left 30
@@ -124,17 +124,17 @@ bindsym $mod+Shift+x --release exec --no-startup-id xkill
 bindsym $mod+c sticky toggle
 bindsym $mod+Shift+c exec --no-startup-id showclip
 
-bindsym $mod+v exec --no-startup-id thunar 
+bindsym $mod+v exec --no-startup-id nautilus
 bindsym $mod+Shift+v exec --no-startup-id $term -e cava
 
-# bindsym $mod+b
-# bindsym $mod+Shift+b
+bindsym $mod+b exec --no-startup-id webtorrent-desktop
+bindsym $mod+Shift+b exec --no-startup-id torbrowser
 
-bindsym $mod+n exec --no-startup-id snap run code
-#bindsym $mod+Shift+n
+bindsym $mod+n exec --no-startup-id tracker
+bindsym $mod+Shift+n exec --no-startup-id snap run code
 
-bindsym $mod+m exec --no-startup-id $term -e cmatrix
-#bindsym $mod+Shift+m
+bindsym $mod+m exec --no-startup-id texmaker
+bindsym $mod+Shift+m exec --no-startup-id $term -e cmatrix
 
 bindsym F1 exec --no-startup-id echo "help" > /dev/null
 bindsym F11 fullscreen toggle
@@ -143,7 +143,6 @@ bindsym $mod+F5 exec sudo systemctl restart NetworkManager
 bindsym $mod+F9 exec --no-startup-id dmenumount
 bindsym $mod+F10 exec --no-startup-id dmenuumount
 
-bindsym --whole-window button2 kill
 bindsym --whole-window $mod+button3 floating toggle
 
 # bindsym XF86Search
@@ -205,28 +204,32 @@ bindsym $mod+Shift+0 move container to workspace $ws10
 for_window [class="Firefox-esr"] move workspace $ws2
 for_window [class="qutebrowser"] move workspace $ws2
 for_window [class="Spotify"] move workspace $ws10
-for_window [class="Mousepad"] "floating enable, resize set 1000 400, i3-msg move to position center"
+for_window [class="Mousepad"] floating enable; i3-msg move to center
 for_window [title="GIMP Startup"] move workspace $ws5
 for_window [window_role="gimp-dock"] floating disable; move left; resize  shrink width 50 px or 50ppt
 for_window [window_role="gimp-toolbox"] floating disable; move right; resize grow width 30 px or 30ppt
 for_window [title="bc"] floating enable
 for_window [title="Plot Zoom"] floating enable
+for_window [class="gmic_qt"] floating enable
 #
 # Startup 
 exec --no-startup-id polybar-launch > /dev/null 2>&1 &
 exec --no-startup-id redshift
+exec --no-startup-id huionconf
 exec_always --no-startup-id xrandr --output LVDS-1 --primary --mode 1366x768 --pos 0x0 --rotate normal --output DP-1 --off --output HDMI-1 --off --output VGA-1 --off
-exec_always --no-startup-id xset b 0
+exec_always --no-startup-id xset b off
 exec_always --no-startup-id xset -dpms
 # exec_always --no-startup-id compton --config ~/.config/compton.conf -b
+exec --no-startup-id picom
 exec --no-startup-id amixer -q sset Master 0%
 # exec_always --no-startup-id ~/.config/i3/blurme_byme
 exec --no-startup-id nm-applet
 exec --no-startup-id xinput --set-prop "SynPS/2 Synaptics TouchPad" "libinput Tapping Enabled" 1
 exec --no-startup-id xinput --set-prop "SynPS/2 Synaptics TouchPad" "libinput Scroll Method Enabled" 0 1 0
 exec --no-startup-id xinput --set-prop "SynPS/2 Synaptics TouchPad" "libinput Natural Scrolling Enabled" 1
+# exec --no-startup-id xinput --set-prop 18 370 1 # Reverse mouse click
 # exec_always --no-startup-id setxkbmap -option ctrl:nocaps
 exec --no-startup-id reload-dunst
 exec --no-startup-id wal -R
-# exec --no-startup-id feh --bg-scale ~/.config/i3/wall.png
+exec --no-startup-id feh --bg-scale ~/.config/i3/wall.png
 exec --no-startup-id conky > /dev/null 2>&1 &
