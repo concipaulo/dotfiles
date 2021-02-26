@@ -8,7 +8,7 @@
 " Maintainer:
 "       Paulo Conci
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" if empty(glob('~/.vim/autoload/plug.vim')) silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim autocmd
+"if empty(glob('~/.vim/autoload/plug.vim')) silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim autocmd
 " VimEnter * PlugInstall --sync | source $MYVIMRC 
 " endif 
 
@@ -30,7 +30,7 @@
     Plug 'lervag/vimtex'
     Plug 'ap/vim-css-color'
     Plug 'ctrlpvim/ctrlp.vim'
-    Plug 'sheerun/vim-polyglot'
+    " Plug 'sheerun/vim-polyglot'
     Plug 'dpelle/vim-LanguageTool'
     Plug 'jalvesaq/Nvim-R'
     call plug#end()
@@ -46,8 +46,8 @@ set mouse=a
 
 "Airline theme
 let g:airline_theme='wal'
-" let g:airline#extensions#tabline#enabled = 1
-" let g:airline#extensions#tabline#fnamemod = ':t'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline_powerline_fonts = 0
 let g:airline#extensions#ctrlp#enable = 1
 " let g:CtrlSpaceStatuslineFunction = "airline#extensions#ctrlspace#statusline()"
@@ -68,7 +68,7 @@ map <leader>a :AirlineRefresh<cr>
 " let g:airline_right_alt_sep = ''
 let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
-let g:airline_symbols.linenr = '☰'
+let g:airline_symbols.linenr = '☰ '
 let g:airline_symbols.maxlinenr = ''
 let g:airline_symbols.notexists = ''
 
@@ -165,6 +165,9 @@ set wildmode=longest,list
 "    set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
 "endif
 
+" Tab line 
+set showtabline=1
+
 "Always show current position
 set ruler
 
@@ -248,8 +251,8 @@ set nowb
 set noswapfile
 "
 "Folding 
-au BufWinLeave ?* mkview
-au BufWinEnter ?* silent loadview
+" au BufWinLeave ?* mkview
+" au BufWinEnter ?* silent loadview
 "
 "Markdown files
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
@@ -272,8 +275,8 @@ set shiftwidth=4
 set tabstop=4
 "
 " Linebreak on 79 characters
-set lbr
-set tw=79
+" set lbr
+" set tw=79
 "
 set ai "Auto indent
 set si "Smart indent
@@ -400,8 +403,8 @@ map <F6> :so $HOME/.vimrc<CR>
 map <F7> :e $HOME/Articles/References/bibfile.bib<CR>
 "
 "nnoremap <leader>m :w<CR>:!rubber --pdf --warn all %<CR>
-nnoremap <leader>m :w<CR>:!xelatex %<CR> :!bibtex %:r.aux <CR> :!xelatex %<CR> :!xelatex %<CR><CR>
-nnoremap <leader>z :!zathura %:r.pdf &<CR><CR>
+" nnoremap <leader>m :w<CR>:!xelatex %<CR> :!bibtex %:r.aux <CR> :!xelatex %<CR> :!xelatex %<CR><CR>
+" nnoremap <leader>z :!zathura %:r.pdf &<CR><CR>
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Spell checking
@@ -472,7 +475,11 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 "let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+let g:syntastic_asm_checkers = ['nasm']
 
+" insert date
+:nnoremap <F5> "=strftime("%c")<CR>P
+:inoremap <F5> <C-R>=strftime("%c")<CR>
 
 " remove arrowkeys
 " nnoremap <Up> :echo "No up for you!" <CR>

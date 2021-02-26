@@ -1,7 +1,7 @@
 #! /bin/bash
 
 # Tablet definition 
-tabletstylus="HUION Huion Tablet Pen stylus" 
+tabletstylus="HUION Huion Tablet stylus" 
 tabletpad="HUION Huion Tablet Pad pad"    
 
 # Buttons 
@@ -10,16 +10,16 @@ tabletpad="HUION Huion Tablet Pad pad"
 #xsetwacom --set "$tabletstylus" Button 2 "key Control_L" # Color picker
 
 #Pen SECOND
-xsetwacom --set "$tabletstylus" Button 3 "key e" # Undo
+# xsetwacom --set "$tabletstylus" Button 3 "key e" # Undo
 
 # TOP LEFT
-xsetwacom --set "$tabletpad" Button 1 "key Control_L z" # toggle eraser
+xsetwacom --set "$tabletpad" Button 1 "key Control_L z" # undo
 
 # BOTTOM LEFT
 xsetwacom --set "$tabletpad" Button 2 "key Shift_L" # resize brush
 
 # TOP RIGHT
-#xsetwacom --set "$tabletpad" Button 3 "key e" # toggle eraser
+xsetwacom --set "$tabletpad" Button 3 "button 3" # right click
 
 # BOTTOM RIGHT
-#xsetwacom --set "$tabletpad" Button 8 "key Control_L z" # undo
+xsetwacom --set "$tabletpad" Button 8 "key e" # toggle erase

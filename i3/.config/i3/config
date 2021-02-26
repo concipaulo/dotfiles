@@ -6,11 +6,11 @@ set $mod Mod4
 #
 #config i3-gaps
 # hide_edge_borders both
-# for_window [class="^.*"] border pixel 2
+for_window [class="^.*"] border pixel 0
 # for_window [class="^.*"] border normal
-default_border pixel 0
+# default_border pixel 2
 default_floating_border normal
-for_window [class=".*"] title_format "<span font='SF Mono SemiBold 10'> › %title</span>"
+# for_window [class=".*"] title_format "<span font='SF Mono SemiBold 10'> › %title</span>"
 
  gaps top 30
  gaps bottom 5
@@ -20,23 +20,22 @@ for_window [class=".*"] title_format "<span font='SF Mono SemiBold 10'> › %tit
 #
 font pango:SF Pro Display:style=Light 10
 #
-# Set colors from Xresources
-# NOTE: The '#f0f0f0' in the lines below is the color i3 will use if
-# it fails to get colors from Xresources.
-set_from_resource $fg i3wm.color7 #f0f0f0
-set_from_resource $bg i3wm.color4 #f0f0f0
-set_from_resource $in i3wm.color4 #f0f0f0
-set_from_resource $bd i3wm.color5 #f0f0f0
+# Colors from pywal/Xresources
+set_from_resource $fg i3wm.color16 #f0f0f0
+set_from_resource $bg i3wm.color5 #f0f0f0
 
 # class                 border  backgr. text indicator child_border
-client.focused          $bd     $bg     $fg  $in       $in
-client.focused_inactive $bd     $bg     $fg  $in       $in
-client.unfocused        $bd     $bg     $fg  $in       $in
-client.urgent           $bd     $bg     $fg  $in       $in
-client.placeholder      $bd     $bg     $fg  $in       $in
+client.focused          $bg     $bg     $fg  $bg       $bg
+client.focused_inactive $bg     $bg     $fg  $bg       $bg
+client.unfocused        $bg     $bg     $fg  $bg       $bg
+client.urgent           $bg     $bg     $fg  $bg       $bg
+client.placeholder      $bg     $bg     $fg  $bg       $bg
 
 client.background       $bg
-#
+
+# PROTIP: You can also dynamically set dmenu's colors this way:
+#bindsym $mod+d exec dmenu_run -nb "$fg" -nf "$bg" -sb "$bg" -sf "$fg"
+
 #configuring
 set $term st
 set $browser firefox-esr
@@ -50,7 +49,7 @@ floating_modifier $mod
 
 # start a terminal
 bindsym $mod+Return exec --no-startup-id $term -e fish
-bindsym $mod+Shift+Return exec --no-startup-id urxvt -e fish
+bindsym $mod+Shift+Return exec --no-startup-id urxvt
 bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
 bindsym $mod+Shift+Escape exec --no-startup-id prompt "Shutting Down?" "sudo shutdown -h now"
@@ -68,7 +67,7 @@ bindsym $mod+e exec --no-startup-id mousepad
 bindsym $mod+Shift+e exec --no-startup-id $term -e sudo ranger
 
 bindsym $mod+r exec --no-startup-id rstudio; workspace $ws3
-bindsym $mod+Shift+r exec --no-startup-id $term -e ranger
+bindsym $mod+Shift+r exec --no-startup-id urxvt -e ranger
 
 bindsym $mod+t split toggle
 bindsym $mod+Shift+t gaps top current set 30; gaps bottom current set 5; gaps left current set 5; gaps right current set 5; gaps inner current set 10
@@ -146,8 +145,8 @@ bindsym $mod+F10 exec --no-startup-id dmenuumount
 bindsym --whole-window $mod+button3 floating toggle
 
 # bindsym XF86Search
-bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10
-bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 10
+bindsym Mod1+Down exec --no-startup-id xbacklight -dec 10
+bindsym Mod1+Up exec --no-startup-id xbacklight -inc 10
 bindsym XF86AudioMute exec --no-startup-id amixer -q sset 'Master' toggle
 bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -q sset 'Master' 5%+ unmute
 bindsym XF86AudioLowerVolume exec --no-startup-id amixer -q sset 'Master' 5%- unmute
@@ -156,7 +155,7 @@ bindsym XF86AudioNext exec --no-startup-id playerctl next
 bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
 bindsym Print exec --no-startup-id scrot -q 100 
 bindsym XF86Display exec --no-startup-id displayselect
-bindsym XF86Calculator exec --no-startup-id $term -e bc
+bindsym XF86Calculator exec --no-startup-id gnome-calculator
 bindsym XF86Tools exec --no-startup-id spotify; workspace $ws10
 
 # alternatively, you can use the cursor keys:
@@ -167,16 +166,27 @@ bindsym $mod+Shift+Right move right
 
 # Workspaces
 # switch to workspace
-set $ws1 "1:"
-set $ws2 "2:"
-set $ws3 "3:"
-set $ws4 "4:"
-set $ws5 "5:"
-set $ws6 "6:"
-set $ws7 "7:"
-set $ws8 "8:"
-set $ws9 "9:"
-set $ws10 "10:"
+# set $ws1 "1:"
+# set $ws2 "2:"
+# set $ws3 "3:"
+# set $ws4 "4:"
+# set $ws5 "5:"
+# set $ws6 "6:"
+# set $ws7 "7:"
+# set $ws8 "8:"
+# set $ws9 "9:"
+# set $ws10 "10:"
+
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
 
 bindsym $mod+1 workspace $ws1
 bindsym $mod+2 workspace $ws2
@@ -208,19 +218,19 @@ for_window [class="Mousepad"] floating enable; i3-msg move to center
 for_window [title="GIMP Startup"] move workspace $ws5
 for_window [window_role="gimp-dock"] floating disable; move left; resize  shrink width 50 px or 50ppt
 for_window [window_role="gimp-toolbox"] floating disable; move right; resize grow width 30 px or 30ppt
-for_window [title="bc"] floating enable
 for_window [title="Plot Zoom"] floating enable
 for_window [class="gmic_qt"] floating enable
+for_window[class="Gnome-calculator"] floating enable
 #
 # Startup 
 exec --no-startup-id polybar-launch > /dev/null 2>&1 &
-exec --no-startup-id redshift
+# exec --no-startup-id redshift
 exec --no-startup-id huionconf
-exec_always --no-startup-id xrandr --output LVDS-1 --primary --mode 1366x768 --pos 0x0 --rotate normal --output DP-1 --off --output HDMI-1 --off --output VGA-1 --off
+exec_always --no-startup-id xrandr --output LVDS1 --primary --mode 1366x768 --pos 0x0 --rotate normal --output DP-1 --off --output HDMI-1 --off --output VGA-1 --off
 exec_always --no-startup-id xset b off
 exec_always --no-startup-id xset -dpms
 # exec_always --no-startup-id compton --config ~/.config/compton.conf -b
-exec --no-startup-id picom
+# exec --no-startup-id picom #this shit just clog the memory more than chrome
 exec --no-startup-id amixer -q sset Master 0%
 # exec_always --no-startup-id ~/.config/i3/blurme_byme
 exec --no-startup-id nm-applet
@@ -228,8 +238,8 @@ exec --no-startup-id xinput --set-prop "SynPS/2 Synaptics TouchPad" "libinput Ta
 exec --no-startup-id xinput --set-prop "SynPS/2 Synaptics TouchPad" "libinput Scroll Method Enabled" 0 1 0
 exec --no-startup-id xinput --set-prop "SynPS/2 Synaptics TouchPad" "libinput Natural Scrolling Enabled" 1
 # exec --no-startup-id xinput --set-prop 18 370 1 # Reverse mouse click
-# exec_always --no-startup-id setxkbmap -option ctrl:nocaps
+exec_always --no-startup-id setxkbmap -option ctrl:nocaps
 exec --no-startup-id reload-dunst
 exec --no-startup-id wal -R
 exec --no-startup-id feh --bg-scale ~/.config/i3/wall.png
-exec --no-startup-id conky > /dev/null 2>&1 &
+# exec --no-startup-id conky > /dev/null 2>&1 &
