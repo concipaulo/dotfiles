@@ -32,37 +32,37 @@ URxvt.url-select.laucher: /usr/bin/qutebrowser
 URxvt.url-select.undeline: true
 Urxvt.keyboard-select.clipboard: true
 URxvt.saveLines: 12000
-URxvt*font: xft:M+ 1m:style=Regular: size=11, PowerlineSymbols:style=Medium: size=9
-URxvt*fontBold: xft:M+ 1m:style=Bold: size=11, PowerlineSymbols:style=Medium: size=9
-/* URxvt*font: xft:FantasqueSansMono Nerd Font Mono::style=Regular: size=11, PowerlineSymbols:style=Medium: size=8 */
-/* URxvt*fontBold: xft:FantasqueSansMono Nerd Font Mono:style=Bold: size=11, PowerlineSymbols:style=Medium: size=8 */
-URxvt*letterSpace: 0
+URxvt*font: xft:M+ 1m:style=medium:pixelsize=14:antialias=true:autohint=true,PowerlineSymbols:style=Medium: size=8
+!/* URxvt*fontBold: xft:M+ 1m:style=bold:pixelsize=14:antialias=true:autohint=true,PowerlineSymbols:style=Medium: size=8 */
+!/* URxvt*font: xft:FantasqueSansMono Nerd Font Mono::style=Regular: size=11, PowerlineSymbols:style=Medium: size=8 */
+URxvt*fontBold: xft:FantasqueSansMono Nerd Font Mono:style=Bold: size=11, PowerlineSymbols:style=Medium: size=8
+URxvt*letterSpace: -1
 URxvt*scrollBar: false
 URxvt.iso14755: false
 URxvt.cursorBlink: 1
 URxvt.cursorUnderline: 0
 URxvt.internalBorder: 5
 URxvt.externalBorder: 0
-/* ; configure alt-s as the keybinding to enter vim scrollback mode. */
+!/* ; configure alt-s as the keybinding to enter vim scrollback mode. */
 urxvt.vim-scrollback: M-f
-/* ; configure alt-p as the keybinding to paste mode. */
+!/* ; configure alt-p as the keybinding to paste mode. */
 urxvt.vim-scrollback-paste: M-p
-/* ; configure the background and foreground colors used for the status bar while */
-/* ; in scrollback mode. */
+!/* ; configure the background and foreground colors used for the status bar while */
+!/* ; in scrollback mode. */
 urxvt.vim-scrollback-bg: 16
 urxvt.vim-scrollback-fg: 10
-/* ; configure vim-scrollback specific matchers */
+!/* ; configure vim-scrollback specific matchers */
 urxvt.vim-scrollback.pattern.1: \\B(/\\S+?):(\\d+)(?=:|$)
 urxvt.vim-scrollback.launcher.1: vim +$2 $1
 !#################################
 ! ROFI
 !#################################
 rofi.fullscreen: false
-rofi.separator-style: none
-rofi.hide-scrollbar: true
-rofi.show-icons: true
-rofi.drun-icon-theme: Papirus-Dark
-rofi.lines: 8
+!rofi.separator-style: none
+!rofi.hide-scrollbar: true
+!rofi.show-icons: true
+!rofi.drun-icon-theme: Papirus-Dark
+!rofi.lines: 8
 rofi.position:center
 rofi.color-enabled: true
 !vim filetype:Xresouces

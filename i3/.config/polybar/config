@@ -103,8 +103,6 @@ menu-2-1-exec = scrot &
 label-open-padding = 2
 label-open-background = ${colors.primary}
 label-open-foreground = ${colors.foreground}
-; click-left = notify-send -u critical "meow!"
-
 
 [module/update]
 type = custom/script
@@ -233,7 +231,7 @@ ramp-volume-0 =奄
 ramp-volume-1 =奔 
 ramp-volume-2 =墳 
 
-click-left = alsa
+click-right = exec volqt
 
 ramp-headphones-0 = 
 ramp-headphones-1 = 
@@ -245,7 +243,7 @@ blacklist-0 = num lock
 blacklist-1 = scroll lock
 blacklist-2 = caps lock
 label-layout =  %{T5}%layout%%{T-}
-;label-layout-font = 3
+; label-layout-font = 3
 ; label-underline = ${colors.deep-purple}
 
 

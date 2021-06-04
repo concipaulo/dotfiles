@@ -139,3 +139,4 @@ export TERMINAL=urxvtd
 
 # Import the colors.
 . "${HOME}/.cache/wal/colors.sh"
+source "$HOME/.cargo/env"

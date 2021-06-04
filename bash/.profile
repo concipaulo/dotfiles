@@ -26,3 +26,4 @@ if [ -d "$HOME/.local/bin" ] ; then
 fi
 
 xrdb -merge ~/.Xresources
+source "$HOME/.cargo/env"

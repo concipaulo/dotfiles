@@ -8,6 +8,5 @@ while pgrep -u $UID -x polybar 2>/dev/null; do sleep 1; done
 
 # Launch polybar
 polybar simple &
-polybar test & 
 
 notify-send -u low "Polybar launched..."

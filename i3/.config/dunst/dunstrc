@@ -16,7 +16,7 @@ horizontal_padding = 45
 frame_width = 0
 sort = no
 idle_threshold = 0
-font = rissole 11
+font =  MesloLGMDZ Nerd Font:style=Bold 12
 line_height = 8
 markup = full
 format = %s\n%b

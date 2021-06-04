@@ -9,4 +9,5 @@ settings:
   content.blocking.method:
     global: both
   content.notifications:
+    https://www.reddit.com: false
     https://www.youtube.com: false

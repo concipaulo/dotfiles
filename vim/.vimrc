@@ -17,7 +17,7 @@
     Plug 'tpope/vim-sensible'
     Plug 'junegunn/goyo.vim'
     Plug 'https://github.com/scrooloose/nerdtree.git'
-    Plug 'https://github.com/vim-syntastic/syntastic.git'
+    " Plug 'https://github.com/vim-syntastic/syntastic.git'
     Plug 'tpope/vim-abolish'
     Plug 'vim-airline/vim-airline' 
     Plug 'vim-airline/vim-airline-themes' 
@@ -28,17 +28,18 @@
     Plug 'tpope/vim-unimpaired'
     Plug 'dylanaraps/wal.vim'
     Plug 'lervag/vimtex'
-    Plug 'ap/vim-css-color'
+    Plug 'ap/vim-css-color'        
     Plug 'ctrlpvim/ctrlp.vim'
     " Plug 'sheerun/vim-polyglot'
     Plug 'dpelle/vim-LanguageTool'
     Plug 'jalvesaq/Nvim-R'
+    Plug 'Yggdroot/indentLine'
     call plug#end()
 
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+" let g:UltiSnipsExpandTrigger="<tab>"
+" let g:UltiSnipsJumpForwardTrigger="<c-b>"
+" let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 "
 syntax on
 filetype on
@@ -46,12 +47,12 @@ set mouse=a
 
 "Airline theme
 let g:airline_theme='wal'
-let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#enabled = 2
 let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline_powerline_fonts = 0
 let g:airline#extensions#ctrlp#enable = 1
 " let g:CtrlSpaceStatuslineFunction = "airline#extensions#ctrlspace#statusline()"
-"let g:airline_section_z = airline#section#create(['windowswap', '%3p%% ', 'linenr', ':%3v'])
+" let g:airline_section_z = airline#section#create(['windowswap', '%3p%% ', 'linenr', ':%3v'])
 let g:airline#extensions#whitespace#show_message = 0
 let g:airline#extensions#whitespace#enable = 0
 " let g:airline_whitespace_disable = 1
@@ -86,13 +87,7 @@ let g:polyglot_disabled = ['latex']
 let g:vimtex_view_method='zathura'
 let g:airline#extensions#vimtex#enable=1
 
-
-" " Nerdtree settings
-" " launch nerdtree on entry if no file is specified
-"autocmd StdinReadPre * let s:std_in=1
-"autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-"set autochdir                " automatically change directory
-"let NERDTreeChDirMode=2
+" Nerdtree settings
 let g:nerdtree_tabs_open_on_gui_startup=0
 
 set ttimeout
@@ -166,7 +161,7 @@ set wildmode=longest,list
 "endif
 
 " Tab line 
-set showtabline=1
+set showtabline=2
 
 "Always show current position
 set ruler
@@ -282,7 +277,6 @@ set ai "Auto indent
 set si "Smart indent
 set wrap "Wrap lines
 "
-"
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Moving around, tabs, windows and buffers
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -301,7 +295,7 @@ map <C-l> <C-W>l
 "
 " wipe the current buffer
 map <leader>bw :bw<cr>
-map <leader>bd :bd<cr>
+map <leader>x :bd<cr>
 "
 " Close all the buffers
 map <leader>ba :bufdo bd<cr>
@@ -338,7 +332,7 @@ map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
 " Switch CWD to the directory of the open buffer
 " map <leader>cd :cd %:p:h<cr>:pwd<cr>
 "
-map <leader>S :SyntasticToggleMode<CR>
+" map <leader>S :SyntasticToggleMode<CR>
 "
 " Specify the behavior when switching between buffers
 " try
@@ -368,17 +362,17 @@ set statusline=\ %{FugitiveStatusline()}\ %F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\
 " map 0 ^
 "
 " Delete trailing white space on save, useful for some filetypes ;)
-" fun! CleanExtraSpaces()
-"     let save_cursor = getpos(".")
-"     let old_query = getreg('/')
-"     silent! %s/\s\+$//e
-"     call setpos('.', save_cursor)
-"     call setreg('/', old_query)
-" endfun
-" "
-" if has("autocmd")
-"     autocmd BufWritePre *.txt,*.js,*.py,*.wiki,*.sh,*.coffee :call CleanExtraSpaces()
-" endif
+fun! CleanExtraSpaces()
+    let save_cursor = getpos(".")
+    let old_query = getreg('/')
+    silent! %s/\s\+$//e
+    call setpos('.', save_cursor)
+    call setreg('/', old_query)
+endfun
+"
+if has("autocmd")
+    autocmd BufWritePre *.txt,*.js,*.py,*.wiki,*.sh,*.coffee :call CleanExtraSpaces()
+endif
 " "Easy expansion of the active file directory
 " cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 
@@ -400,9 +394,9 @@ cnoremap <C-p> <Up>
 cnoremap <C-n> <Down>
 map <F9> :e $HOME/.vimrc<CR>
 map <F6> :so $HOME/.vimrc<CR>
-map <F7> :e $HOME/Articles/References/bibfile.bib<CR>
+" map <F7> :e $HOME/Articles/References/bibfile.bib<CR>
 "
-"nnoremap <leader>m :w<CR>:!rubber --pdf --warn all %<CR>
+" nnoremap <leader>m :w<CR>:!rubber --pdf --warn all %<CR>
 " nnoremap <leader>m :w<CR>:!xelatex %<CR> :!bibtex %:r.aux <CR> :!xelatex %<CR> :!xelatex %<CR><CR>
 " nnoremap <leader>z :!zathura %:r.pdf &<CR><CR>
 "
@@ -467,37 +461,35 @@ map <leader>pp :setlocal paste!<cr>
 set showcmd
 
 " syntastic 
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+" set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%*
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-"let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_asm_checkers = ['nasm']
+" let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_auto_loc_list = 1
+" let g:syntastic_check_on_open = 1
+" let g:syntastic_check_on_wq = 0
+" let g:syntastic_asm_checkers = ['nasm']
 
 " insert date
-:nnoremap <F5> "=strftime("%c")<CR>P
-:inoremap <F5> <C-R>=strftime("%c")<CR>
+nnoremap <F5> "=strftime("%c")<CR>P
+inoremap <F5> <C-R>=strftime("%c")<CR>
 
-" remove arrowkeys
-" nnoremap <Up> :echo "No up for you!" <CR>
-" nnoremap <Down> :echo "No down for you!" <CR>
-" nnoremap <Left> :echo "No left for you!" <CR>
-" nnoremap <Right> :echo "No right for you!" <CR>
+" executes python files, but probably fucks up if you pressed in other files
+nnoremap <F8> :w<CR> :! clear; python3 % <CR>
+inoremap <F8> <esc>:w<CR> :! clear; python3 % <CR>
 
-" vnoremap <Up> :<C-u>echo "No up for you!" <CR>
-" vnoremap <Down> :<C-u>echo "No down for you!" <CR>
-" vnoremap <Left> :<C-u>echo "No left for you!" <CR>
-" vnoremap <Right> :<C-u>echo "No right for you!" <CR>
+" copy the contents of the line above to the current line in insert mode
+inoremap <C-L> <Esc>klywjpa
 
-" inoremap <Up> <C-o>:echo "No up for you!" <CR>
-" inoremap <Down> <C-o>:echo "No down for you!" <CR>
-" inoremap <Left> <C-o>:echo "No left for you!" <CR>
-" inoremap <Right> <C-o>:echo "No right for you!" <CR>
+
+" autocmd FileType python map <buffer> <F8> :w<CR>:exec '!python3' shellescape(@%, 1)<CR>
+" autocmd FileType python imap <buffer> <F8> <esc>:w<CR>:exec '!python3' shellescape(@%, 1)<CR>
+
+" Changes <C-y> to copy the whole word instead of a character
+" Changes <C-y> to copy the whole word 
+" inoremap <expr> <c-y> pumvisible() ? "\<c-y>" : matchstr(getline(line('.')-1), '\%' . virtcol('.') . 'v\%(\k\+\\|.\)')
 
 " laggy tex file ?
 " autocmd FileType tex :NoMatchParen
 " au FileType tex setlocal nocursorline
-"
