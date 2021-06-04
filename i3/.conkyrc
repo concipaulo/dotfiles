@@ -1,89 +1,48 @@
-##!/usr/bin/conky -d -c
-alignment top_left
-background no
-border_margin 2
-border_width 5
-color1 525276			#
-color3 FCAF3E			# zolty
-color2 4d1300 #64574e	e1e1e1  used in titles
-color0 a82553			# rozowy f71f84
-color4 5e1014			# bordowy
-color5 64574e			# braz
-color6 a7a7a7			# szary
-color7 8888CC			#  (COOL)
-color8 9d9c61			# zolto-szary
-color9 525276			# niebiesko-szary
-cpu_avg_samples 2
-default_color 000000 #4d2e00 #ff5050 #FF4500 #8A2BE2 #525276 #e1e1e1  e1e1e1 Default color (text color)
-default_outline_color 000000 	# Black
-default_shade_color 000000	# Black
-double_buffer yes
-draw_borders no
-draw_graph_borders no
-draw_outline no
-draw_shades no
-gap_x 20
-gap_y 120
-max_user_text 10000
-maximum_width 185
-minimum_size 850
-net_avg_samples 2
-no_buffers yes
-override_utf8_locale yes
-own_window yes
-own_window_colour 000000	# Black
-own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
-own_window_transparent yes
-own_window_type override
-pad_percents 2
-short_units yes
-stippled_borders 3
-text_buffer_size 8000
-total_run_times 0
-update_interval 1.0
-uppercase no
-use_spacer right
-use_xft yes
-xftalpha 0.75
-xftfont sans:size=8
+conky.config = {
+    alignment = 'middle_right',
+    background = true,
+    border_width = 1,
+    cpu_avg_samples = 2,
+    default_color = '3f3f3f',
+    default_outline_color = '3f3f3f',
+    default_shade_color = '3f3f3f',
+    double_buffer = true,
+    draw_borders = false,
+    draw_graph_borders = false,
+    draw_outline = false,
+    draw_shades = false,
+    extra_newline = false,
+    font = 'agave Nerd Font:size=12',
+    format_human_readable = true,
+    gap_x = 20,
+    gap_y = -20,
+    minimum_height = 5,
+    minimum_width = 5,
+    net_avg_samples = 2,
+    no_buffers = true,
+    out_to_console = false,
+    out_to_ncurses = false,
+    out_to_stderr = false,
+    out_to_x = true,
+    own_window = true,
+    own_window_transparent = true,
+    own_window_argb_visual = true,
+    own_window_class = 'Conky',
+    own_window_type = 'override',
+    show_graph_range = false,
+    show_graph_scale = false,
+    stippled_borders = 0,
+    update_interval = 1.0,
+    uppercase = false,
+    use_spacer = 'none',
+    use_xft = true,
+}
 
-TEXT
-${color2}${goto 10}${font DejaVu Sans Mono:size=44}${time %H}${font DejaVu Sans Mono:size=20}${voffset -25}'${time %M}${font DejaVu Sans Mono:size=8}${voffset -12}${time %S}
-${color2}${goto 85}${voffset 10}${font :size=8}${time %A}
-${color2}${goto 85}${voffset 1}${font :size=8}${time %d %b %Y}
-# ${color}${font RsbillsDng:size=12}${font}${font DejaVu Sans Mono:size=8}${execpi 3600 DJS=`date +%_d`; cal -m8| sed '1d' | sed '/./!d' | sed 's/$/                     /' | fold -w 21 | sed -n '/^.\{21\}/p' | sed 's/^/${alignc} /' | sed /" $DJS "/s/" $DJS "/" "'${color2}'"$DJS"'${color}'" "/}${font}
-
-
-${voffset -20}${color2}${font led:size=10}SYSTEM ${font}$hr
-${color}${sysname} Kernel: ${alignr}$kernel
-${color}Architecture: ${alignr}$machine
-${color}Codename: ${alignr}${exec lsb_release -c | awk '{print $2; }'}
-${color}Host: ${alignr}$nodename
-${color}Uptime:$color ${alignr}$uptime
-
-${voffset -10}${color2}${font led:size=10}CPU ${font}$hr
-${color}Core 0:  ${cpu cpu1}% $alignr ${freq_g (1)} GHz / ${exec sensors | grep "Core 0" | cut --bytes=14-21}
-# ${color}Core 2:  ${cpu cpu2}% $alignr ${freq_g (2)} GHz / ${exec sensors | grep "Core 1" | cut --bytes=14-21}
-${color}Core 2:  ${cpu cpu3}% $alignr ${freq_g (3)} GHz / ${exec sensors | grep "Core 2" | cut --bytes=14-21}
-# ${color}Core 4:  ${cpu cpu4}% $alignr ${freq_g (4)} GHz / ${exec sensors | grep "Core 3" | cut --bytes=14-21}
-
-${voffset -7}${color}${font}NAME ${goto 90}PID${goto 120}CPU% ${alignr}MEM%
-${color}${font :size=8}${goto 9}${top name 1}${goto 85}${top pid 1}${goto 120}${top cpu 1}${goto 156}${top mem 1}
-${color}${font :size=8}${goto 9}${top name 2}${goto 85}${top pid 2}${goto 120}${top cpu 2}${goto 156}${top mem 2}
-${color}${font :size=8}${goto 9}${top name 3}${goto 85}${top pid 3}${goto 120}${top cpu 3}${goto 156}${top mem 3}
-
-${voffset -6}${color2}${font led:size=10}MEMORY / SSD ${font}$hr
-${color}ram: ${mem} / ${memmax} ${alignr} ${memperc}%
-${color}swap: ${swap} / ${swapmax} ${alignr} ${swapperc}%
-# ${color}root: ${fs_used /} / ${fs_size /} ${alignr} ${fs_used_perc /}%
-# ${color}home: ${fs_used /home} / ${fs_size /home} ${alignr} ${fs_used_perc /home}%
-
-${color2}File systems:
- / ${color}${fs_used /}/${fs_size /} ${fs_bar 6 /} ${color2}
-h ${color} ${fs_used /home} / ${fs_size /home} ${fs_bar 6  /home}%
-
-${voffset -10}${color2}${font led:size=10}WIFI ${font}$hr
-${color}gateway IP: ${alignr}${gw_ip}
-${color}local IP: $alignr${addr wlo1}
-${color}public IP: $alignr${execi 3600 curl ifconfig.me}
-Up:${color} ${upspeed wlo1} ${color} ${alignr} Down:$color ${downspeed wlo1}
+conky.text = [[
+${color 3f3f3f}${font agave Nerd Font:size=90}${time %I:%M}
+${voffset -44}${font agave Nerd Font:size=23}${execpi 1800 DA=`date +%_d`; cal | sed s/"\(^\|[^0-9]\)$DA"'\b'/'\1${font agave Nerd Font:weight=bold:size=23}'"$DA"'${font agave Nerd Font:size=23}'/}
+${alignr}${font agave Nerd Font:size=16}${execpi 1800 curl wttr.in/Tangará?format="%l\n"}
+${alignr}${font agave Nerd Font:size=16}${execpi 300 curl wttr.in/Tangará?format="%C+%t++%f\n"}
+${alignr}${font agave Nerd Font:size=16}${execpi 300 curl wttr.in/Tangará?format="++%w+++%P\n"}
+${alignr}${font agave Nerd Font:size=16}${execpi 300 curl wttr.in/Tangará?format="懲+%h++爫+%p\n"}
+]]

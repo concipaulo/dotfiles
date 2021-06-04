@@ -7,7 +7,11 @@ killall -q polybar >/dev/null
 while pgrep -u $UID -x polybar 2>/dev/null; do sleep 1; done
 
 # Launch polybar
-polybar simple &
-polybar down & 
+# polybar simple &
+# polybar down &
+
+# polybar left -c ~/.config/polybar/left_window &
+# polybar right -c ~/.config/polybar/right_window &
+polybar center -c ~/.config/polybar/center_workspace &
 
 notify-send -u low "Polybar launched..."
